@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<domain-models xmlns="http://axelor.com/xml/ns/domain-models"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://axelor.com/xml/ns/domain-models
+  http://axelor.com/xml/ns/domain-models/domain-models_5.0.xsd">
+
+	<module name="gst" package="com.axelor.gst.db" />
+	<entity name="Country">
+		<string name="name" required="true" unique="true" title="Name" />
+		<one-to-many name="stateList" ref="com.axelor.gst.db.State" mappedBy="country"/>
+		<one-to-many name="cityList" ref="com.axelor.gst.db.City" mappedBy="country"/>
+		<one-to-many name="cityAddressList" ref="com.axelor.gst.db.Address" mappedBy="country"/>
+	</entity>
+</domain-models>

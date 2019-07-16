@@ -25,4 +25,34 @@
 	<view type="form" name="bank-account-form"/>  	
   </action-view>
   
+  <menuitem title="Configuration" name="menu-address-configuration"/>
+  
+  <menuitem title="Address" name="menu-address" parent="menu-address-configuration" action="menu.address"/>
+  
+  <action-view name="menu.address" title="Address" model="com.axelor.gst.db.Address">
+  	<view type="grid" name="address-grid"/>
+  	<view type="form" name="address-form"/>
+  </action-view>
+  
+  <menuitem title="City" name="menu-address-city" parent="menu-address-configuration" action="menu.address.city"/>
+  
+  <action-view name="menu.address.city" title="City" model="com.axelor.gst.db.City">
+  	<view type="grid" name="city-grid"/>
+  	<view type="form" name="city-form"/>
+  </action-view>
+  
+  <menuitem title="State" name="menu-address-state" parent="menu-address-configuration" action="menu.address.state"/>
+  
+  <action-view name="menu.address.state" title="State" model="com.axelor.gst.db.State">
+  	<view type="grid" name="state-grid"/>
+  	<view type="form" name="state-form"/>
+  </action-view>
+  
+  <menuitem title="Country" name="menu-address-country" parent="menu-address-configuration" action="menu.address.country"/>
+  
+  <action-view name="menu.address.country" title="Country" model="com.axelor.gst.db.Country">
+  	<view type="grid" name="country-grid"/>
+  	<view type="form" name="country-form"/>
+  </action-view>
+  
   </object-views>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<object-views xmlns="http://axelor.com/xml/ns/object-views"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://axelor.com/xml/ns/object-views
+  http://axelor.com/xml/ns/object-views/object-views_5.0.xsd">
+
+	<grid name="city-grid" title="City" model="com.axelor.gst.db.City">
+		<field name="name" />
+	</grid>
+
+	<form name="city-form" title="City" model="com.axelor.gst.db.City" onSave="action-city-method-name-on-save">
+		<panel name="city-panel" title="City">
+			<field name="name"/>
+			<field name="state" widget="SuggestBox" canNew="true" form-view="state-form" onChange="action-city-method-state-on-change"/>
+			<field name="country" widget="SuggestBox" canNew="true" form-view="country-form"/>
+		</panel>
+	</form>
+	
+	<action-method name="action-city-method-name-on-save" model="com.axelor.gst.db.City">
+		<call class="com.axelor.gst.web.GstController" method="upperCaseCityName"/>
+	</action-method>
+	
+
+</object-views>

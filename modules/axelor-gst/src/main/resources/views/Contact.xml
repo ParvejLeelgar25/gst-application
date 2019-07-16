@@ -19,7 +19,7 @@
 	</grid>
 
 	<form name="contact-form" title="Contact" model="com.axelor.gst.db.Contact">
-		<panel name="contact-panel">
+		<panel name="contact-panel" title="Contact">
 			<field name="name" />
 			<field name="type" selection="contact.type.selection" />
 			<field name="primaryEmail" />

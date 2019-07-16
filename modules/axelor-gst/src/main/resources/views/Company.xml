@@ -9,16 +9,17 @@
 		<field name="gstIn" />
 	</grid>
 
-	<form name="company-grid" title="Company" model="com.axelor.gst.db.Company">
+	<form name="company-form" title="Company" model="com.axelor.gst.db.Company">
 		<panel name="information-panel" title="Information" css="panel-red">
 			<panel colSpan="4">
-				<field name="logo" showTitle="false" colSpan="12" />
+				<field name="logo" showTitle="false" colSpan="12" widget="image"/>
 			</panel>
 			<panel colSpan="8">
 				<field name="name" colSpan="12" />
 				<field name="gstIn" colSpan="12" />
 			</panel>
 		</panel>
+		
 		<panel name="contact-panel" title="Contact">
 			<field name="contact">
 				<editor>
@@ -31,6 +32,7 @@
 				</editor>
 			</field>
 		</panel>
+		
 		<panel-related field="bankDetailsList" name="bank-details-list-panel"
 			title="Bank Details" form-view="bank-account-form">
 			<field name="bank"/>

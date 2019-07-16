@@ -5,13 +5,10 @@
   http://axelor.com/xml/ns/domain-models/domain-models_5.0.xsd">
 
 	<module name="gst" package="com.axelor.gst.db" />
-	
-	<entity name="BankAccount">
-		<string name="bank" required="true" title="Bank"/>
-		<string name="accountNo" required="true" title="Account"/>
-		<string name="ifsc" required="true" title="IFSC"/>
-		<string name="type" selection="bankAccount.type.selection" title="Type"/>
-		<string name="address" large="true" title="Address"/>
+	<entity name="City">
+		<string name="name" required="true" unique="true" title="Name"/>
+		<many-to-one name="country" ref="com.axelor.gst.db.Country" required="true"/>
+		<many-to-one name="state" ref="com.axelor.gst.db.State"/>
+		<one-to-many name="cityList" ref="com.axelor.gst.db.Address" mappedBy="city"/>
 	</entity>
-	
 	</domain-models>
