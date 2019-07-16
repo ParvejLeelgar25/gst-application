@@ -21,7 +21,7 @@
 		</panel>
 		
 		<panel name="contact-panel" title="Contact">
-			<field name="contact">
+			<field name="contactList" showTitle="false">
 				<editor>
 					<field name="name" />
 					<field name="type" selection="contact.type.selection" />
@@ -41,6 +41,11 @@
 			<field name="type" selection="bankAccount.type.selection"/>
 			<field name="address"/>
 		</panel-related>
+		
+		<panel name="address-panel" title="Address">
+			<field name="address" form-view="address-form" showTitle="false" canNew="true"/>
+		</panel>
 	</form>
+	
 
 </object-views>

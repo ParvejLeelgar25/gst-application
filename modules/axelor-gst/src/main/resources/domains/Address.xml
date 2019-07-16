@@ -10,9 +10,11 @@
 		<string name="type" selection="address.type.selection" required="true" title="Type" />
 		<string name="line1" required="true" title="Line1"/>
 		<string name="line2" title="Line2" />
-		<many-to-one name="city" ref="com.axelor.gst.db.City" required="true"/>
-		<many-to-one name="state" ref="com.axelor.gst.db.State"/>
-		<many-to-one name="country" ref="com.axelor.gst.db.Country" required="true"/>
+		<many-to-one name="city" ref="com.axelor.gst.db.City" required="true" title="City"/>
+		<many-to-one name="state" ref="com.axelor.gst.db.State" title="State"/>
+		<many-to-one name="country" ref="com.axelor.gst.db.Country" required="true" title="Country"/>
 		<string name="pinCode" title="Pin Code"/>
+		
+		<one-to-many name="companyList" ref="com.axelor.gst.db.Company" mappedBy="address"/>
 	</entity>
 	</domain-models>
