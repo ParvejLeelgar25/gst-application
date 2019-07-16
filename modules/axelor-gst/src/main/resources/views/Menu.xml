@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<object-views xmlns="http://axelor.com/xml/ns/object-views"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://axelor.com/xml/ns/object-views
+  http://axelor.com/xml/ns/object-views/object-views_5.0.xsd">
+  
+  <menuitem title="Company" name="menu-company" action="menu.company"/>
+  
+  <action-view name="menu.company" title="Company" model="com.axelor.gst.db.Company">
+	<view type="grid" name="company-grid"/>
+	<view type="form" name="company-form"/>  	
+  </action-view>
+  
+  <menuitem title="Contact" name="menu-contact" action="menu.contact"/>
+  
+  <action-view name="menu.contact" title="Contact" model="com.axelor.gst.db.Contact">
+	<view type="grid" name="contact-grid"/>
+	<view type="form" name="contact-form"/>  	
+  </action-view>
+  
+  <menuitem title="Bank Account" name="menu-bank-account" action="menu.bank.account"/>
+  
+  <action-view name="menu.bank.account" title="Bank Account" model="com.axelor.gst.db.BankAccount">
+	<view type="grid" name="bank-account-grid"/>
+	<view type="form" name="bank-account-form"/>  	
+  </action-view>
+  
+  </object-views>
