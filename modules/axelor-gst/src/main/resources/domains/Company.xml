@@ -12,6 +12,6 @@
 		<one-to-many name="contactList" ref="com.axelor.gst.db.Contact" mappedBy="company" title="City"/>
 		<one-to-many name="bankDetailsList" ref="com.axelor.gst.db.BankAccount" mappedBy="company" title="Bank Account Details"/>
 		<many-to-one name="logo" ref="com.axelor.meta.db.MetaFile" title="Image"/>
-		<many-to-one name="address" ref="com.axelor.gst.db.Address" title="Address"/>
+		<many-to-one name="address" ref="com.axelor.gst.db.Address" title="Address" />
 	</entity>
 </domain-models>

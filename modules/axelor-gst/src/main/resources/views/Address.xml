@@ -4,13 +4,6 @@
 	xsi:schemaLocation="http://axelor.com/xml/ns/object-views
   http://axelor.com/xml/ns/object-views/object-views_5.0.xsd">
 	
-	<selection name="address.type.selection">
-		<option value="default">Default</option>
-		<option value="invoice">Invoice</option>
-		<option value="shipping">Shipping</option>
-		<option value="other">Other</option>
-	</selection>
-	
 	<grid name="address-grid" title="Address" model="com.axelor.gst.db.Address">
 		<field name="line1" />
 		<field name="line2" />
@@ -26,12 +19,23 @@
 		</panel>
 		
 		<panel name="city-state-country-panel" title="Other Information">
-			<field name="city" canNew="true" form-view="city-form"/>
-			<field name="state" canNew="true" form-view="state-form"/>
-			<field name="country" canNew="true" form-view="country-form"/>
-			
-		</panel>
-		
+			<field name="city" canNew="true" form-view="city-form" widget="SuggestBox" onChange="action-gst-address-record-state-country-on-change,action-gst-address-attrs-country-on-change"/>
+			<field name="state" canNew="true" form-view="state-form" widget="SuggestBox" onChange="action-gst-address-record-state-on-change"/>
+			<field name="country" canNew="true" form-view="country-form" widget="SuggestBox"/>	
+		</panel>	
 	</form>
+	
+	<action-record name="action-gst-address-record-state-country-on-change" model="com.axelor.gst.db.Address">
+		<field name="state" expr="eval: city.getState()"/>
+		<field name="country" expr="eval: city.getCountry()"/>
+	</action-record>
+	
+	<action-record name="action-gst-address-record-state-on-change" model="com.axelor.gst.db.Address">
+		<field name="country" expr="eval: state.getCountry()"/>
+	</action-record>
+	
+	<action-attrs name="action-gst-address-attrs-country-on-change" model="com.axelor.gst.db.Address">
+		<attribute name="readonly" for="country" expr=""/>
+	</action-attrs>
 
 </object-views>

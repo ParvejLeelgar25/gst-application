@@ -8,17 +8,25 @@
 		<field name="name" />
 	</grid>
 
-	<form name="city-form" title="City" model="com.axelor.gst.db.City" onSave="action-city-method-name-on-save">
+	<form name="city-form" title="City" model="com.axelor.gst.db.City" onSave="action-gst-city-method-name-on-save">
 		<panel name="city-panel" title="City">
 			<field name="name"/>
-			<field name="state" widget="SuggestBox" canNew="true" form-view="state-form" onChange="action-city-method-state-on-change"/>
+			<field name="state" widget="SuggestBox" canNew="true" form-view="state-form" onChange="action-gst-city-record-state-on-change,action-gst-city-attrs-state-on-change"/>
 			<field name="country" widget="SuggestBox" canNew="true" form-view="country-form"/>
 		</panel>
 	</form>
 	
-	<action-method name="action-city-method-name-on-save" model="com.axelor.gst.db.City">
+	<action-method name="action-gst-city-method-name-on-save" model="com.axelor.gst.db.City">
 		<call class="com.axelor.gst.web.GstController" method="upperCaseCityName"/>
 	</action-method>
+	
+	<action-record name="action-gst-city-record-state-on-change" model="com.axelor.gst.db.City">
+		<field name="country" expr="eval: state.getCountry()"/>
+	</action-record>
+	
+	<action-attrs name="action-gst-city-attrs-state-on-change" model="com.axelor.gst.db.City">
+		<attribute name="readonly" for="country" expr=""/>
+	</action-attrs>
 	
 
 </object-views>

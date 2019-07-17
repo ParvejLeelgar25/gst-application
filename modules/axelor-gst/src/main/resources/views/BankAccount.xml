@@ -4,11 +4,6 @@
 	xsi:schemaLocation="http://axelor.com/xml/ns/object-views
   http://axelor.com/xml/ns/object-views/object-views_5.0.xsd">
 
-	<selection name="bankAccount.type.selection">
-		<option value="current">Current</option>
-		<option value="saving">Saving</option>
-	</selection>
-
 	<grid name="bank-account-grid" title="Bank Account"
 		model="com.axelor.gst.db.BankAccount">
 		<field name="bank" />
