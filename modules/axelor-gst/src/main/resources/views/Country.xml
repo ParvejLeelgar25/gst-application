@@ -8,13 +8,13 @@
 		<field name="name" />
 	</grid>
 
-	<form name="country-form" title="Country" model="com.axelor.gst.db.Country" onSave="action-gst-country-method-name-on-save">
+	<form name="country-form" title="Country" model="com.axelor.gst.db.Country" onSave="action-country-method-name-on-save">
 		<panel name="country-panel" title="Country">
 			<field name="name"/>
 		</panel>
 	</form>
 	
-	<action-method name="action-gst-country-method-name-on-save" model="com.axelor.gst.db.Country">
+	<action-method name="action-country-method-name-on-save" model="com.axelor.gst.db.Country">
 		<call class="com.axelor.gst.web.GstController" method="upperCaseCountryName"/>
 	</action-method>
   

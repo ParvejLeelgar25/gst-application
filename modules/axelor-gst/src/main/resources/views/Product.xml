@@ -23,15 +23,24 @@
 	<form name="product-form" title="Product" model="com.axelor.gst.db.Product">
 
 		<panel name="product-panel" title="Product">
+			<field name="image" widget="image"/>
 			<field name="name" />
 			<field name="code" />
 			<field name="hsbn" />
 			<field name="salePrice" />
 			<field name="costPrice" />
-			<field name="gstRate" />
 			<field name="productCategory" form-view="product-category-form"
-				canNew="true" />
+				canNew="true" onChange="action-product-attrs-product-category-on-change,action-product-record-product-category-on-change"/>
+			<field name="gstRate" />
 		</panel>
 	</form>
+	
+	<action-attrs name="action-product-attrs-product-category-on-change" model="com.axelor.gst.db.Product">
+		<attribute name="readonly" for="gstRate" expr=""/>
+	</action-attrs>
+	
+	<action-record name="action-product-record-product-category-on-change" model="com.axelor.gst.db.Product">
+		<field name="gstRate" expr="eval: productCategory.getGstRate()"/>
+	</action-record>	
 
 </object-views>

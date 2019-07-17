@@ -68,4 +68,12 @@
   	<view type="grid" name="product-category-grid"/>
   	<view type="form" name="product-category-form"/>
   </action-view>
+  
+  <menuitem title="Party" name="menu-party" action="menu.party"/>
+  
+  <action-view name="menu.party" title="Party" model="com.axelor.gst.db.Party">
+  	<view type="grid" name="party-grid"/>
+  	<view type="form" name="party-form"/>
+  </action-view>
+  
   </object-views>

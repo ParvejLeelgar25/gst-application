@@ -21,5 +21,10 @@
 		<option value="current">Current</option>
 		<option value="saving">Saving</option>
 	</selection>
+	
+	<selection name="party.type.selection">
+		<option value="individual">Individual</option>
+		<option value="company">Company</option>
+	</selection>
   
   </object-views>

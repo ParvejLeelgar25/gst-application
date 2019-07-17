@@ -16,5 +16,6 @@
 		<string name="pinCode" title="Pin Code"/>
 		
 		<one-to-many name="companyList" ref="com.axelor.gst.db.Company" mappedBy="address"/>
+		<many-to-one name="party" ref="com.axelor.gst.db.Party"/>
 	</entity>
 	</domain-models>

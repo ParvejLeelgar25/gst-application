@@ -12,8 +12,8 @@
 		<string name="hsbn" title="HSBN"/>
 		<decimal name="salePrice" title="Sale Price"/>
 		<decimal name="costPrice" title="Cost Price"/>
-		<decimal name="gstRate" title="GST Rate"/>
-		<binary name="image" image="true" title="Image"/>
+		<decimal name="gstRate" title="GST Rate" />
+		<many-to-one name="image" ref="com.axelor.meta.db.MetaFile" title="Image"/>
 		<many-to-one name="productCategory" ref="com.axelor.gst.db.ProductCategory" title="Product Category"/>
 	</entity>
 	
