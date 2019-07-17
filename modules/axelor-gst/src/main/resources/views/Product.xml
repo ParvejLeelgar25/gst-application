@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<object-views xmlns="http://axelor.com/xml/ns/object-views"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://axelor.com/xml/ns/object-views
+  http://axelor.com/xml/ns/object-views/object-views_5.0.xsd">
+
+	<grid name="product-grid" title="Product" model="com.axelor.gst.db.Product">
+
+		<toolbar>
+			<button name="createInvoice" icon="fa-print" onClick=""
+				title="Create Invoice" />
+			<button name="print" icon="fa-print" onClick="" title="Report" />
+		</toolbar>
+
+		<field name="name" />
+		<field name="code" />
+		<field name="hsbn" />
+		<field name="salePrice" />
+		<field name="costPrice" />
+		<field name="gstRate" />
+	</grid>
+
+	<form name="product-form" title="Product" model="com.axelor.gst.db.Product">
+
+		<panel name="product-panel" title="Product">
+			<field name="name" />
+			<field name="code" />
+			<field name="hsbn" />
+			<field name="salePrice" />
+			<field name="costPrice" />
+			<field name="gstRate" />
+			<field name="productCategory" form-view="product-category-form"
+				canNew="true" />
+		</panel>
+	</form>
+
+</object-views>

@@ -55,4 +55,17 @@
   	<view type="form" name="country-form"/>
   </action-view>
   
+  <menuitem title="Product" name="menu-product" action="menu.product"/>
+  
+  <action-view name="menu.product" title="Product" model="com.axelor.gst.db.Product">
+  	<view type="grid" name="product-grid"/>
+  	<view type="form" name="product-form"/>
+  </action-view>
+  
+  <menuitem title="Product Category" name="menu-product-category" action="menu.product.category"/>
+  
+  <action-view name="menu.product.category" title="Product Category" model="com.axelor.gst.db.ProductCategory">
+  	<view type="grid" name="product-category-grid"/>
+  	<view type="form" name="product-category-form"/>
+  </action-view>
   </object-views>

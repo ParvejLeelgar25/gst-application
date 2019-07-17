@@ -43,7 +43,7 @@
 		</panel-related>
 		
 		<panel name="address-panel" title="Address">
-			<field name="address" form-view="address-form" showTitle="false" canNew="true"/>
+			<field name="address" form-view="address-form" canNew="true"/>
 		</panel>
 	</form>
 	
