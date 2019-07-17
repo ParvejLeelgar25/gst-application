@@ -15,5 +15,6 @@
 		
 		<many-to-one name="company" ref="com.axelor.gst.db.Company"/>
 		<many-to-one name="party" ref="com.axelor.gst.db.Party"/>
+		<one-to-many name="invoiceList" ref="com.axelor.gst.db.Invoice" mappedBy="partyContact"/>
 	</entity>
 </domain-models>

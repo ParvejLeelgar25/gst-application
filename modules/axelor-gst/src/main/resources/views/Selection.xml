@@ -26,5 +26,12 @@
 		<option value="individual">Individual</option>
 		<option value="company">Company</option>
 	</selection>
+	
+	<selection name="invoice.status.selection">
+		<option value="draft">Draft</option>
+		<option value="validated">Validated</option>
+		<option value="paid">Paid</option>
+		<option value="cancelled">Cancelled</option>
+	</selection>
   
   </object-views>

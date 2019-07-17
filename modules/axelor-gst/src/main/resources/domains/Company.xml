@@ -13,5 +13,7 @@
 		<one-to-many name="bankDetailsList" ref="com.axelor.gst.db.BankAccount" mappedBy="company" title="Bank Account Details"/>
 		<many-to-one name="logo" ref="com.axelor.meta.db.MetaFile" title="Image"/>
 		<many-to-one name="address" ref="com.axelor.gst.db.Address" title="Address" />
+		
+		<one-to-many name="invoiceList" ref="com.axelor.gst.db.Invoice" mappedBy="company"/>
 	</entity>
 </domain-models>

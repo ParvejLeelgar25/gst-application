@@ -9,9 +9,9 @@
 		<field name="gstIn" />
 	</grid>
 
-	<form name="party-form" title="Party" model="com.axelor.gst.db.Party" onNew="action-party-attrs-reference-on-new">
+	<form name="party-form" title="Party" model="com.axelor.gst.db.Party">
 		<panel name="party-panel" title="Party">
-			<field name="reference" />
+			<field name="reference"/>
 			<field name="name" />
 			<field name="type" selection="party.type.selection" />
 			<field name="isCustomer" />
@@ -44,11 +44,7 @@
 			</field>
 		</panel>
 	</form>
-	
-	<action-attrs name="action-party-attrs-reference-on-new" model="com.axelor.gst.db.Party">
-		<attribute name="readonly" for="reference" expr=""/>
-	</action-attrs>
-	
+		
 	<action-record name="action-party-record-state-on-change" model="com.axelor.gst.db.Party">
 		<field name="country" expr="eval: state.getCountry()"/>
 	</action-record>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<object-views xmlns="http://axelor.com/xml/ns/object-views"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://axelor.com/xml/ns/object-views
+  http://axelor.com/xml/ns/object-views/object-views_5.0.xsd">
+
+	<grid name="invoice-grid" title="Invoice" model="com.axelor.gst.db.Invoice">
+		<field name="status" />
+	</grid>
+
+	<form name="invoice-form" title="Invoice" model="com.axelor.gst.db.Invoice" onNew="action-invoice-method-company-on-new">
+		<panel name="invoice-panel" itemSpan="12">
+			<field name="status" selection="invoice.status.selection" widget="NavSelect" />
+			<field name="company" canNew="true" form-view="company-form" widget="SuggestBox"/>
+			<field name="isUseInvoiceAddressAsShipping" />
+		</panel>
+	</form>
+	
+	<action-method name="action-invoice-method-company-on-new" model="com.axelor.gst.db.Invoice">
+		<call class="com.axelor.gst.web.GstController" method="setDefaultCompany"/>
+	</action-method>
+
+</object-views>	

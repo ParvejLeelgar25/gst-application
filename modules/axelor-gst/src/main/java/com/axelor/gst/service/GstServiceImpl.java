@@ -1,8 +1,12 @@
 package com.axelor.gst.service;
 
 import com.axelor.gst.db.City;
+import com.axelor.gst.db.Company;
 import com.axelor.gst.db.Country;
+import com.axelor.gst.db.Invoice;
 import com.axelor.gst.db.State;
+import com.axelor.rpc.ActionRequest;
+import com.axelor.rpc.ActionResponse;
 
 public class GstServiceImpl implements GstService{
 	
@@ -31,5 +35,15 @@ public class GstServiceImpl implements GstService{
 		name = name.toUpperCase();
 		city.setName(name);
 		return city;
+	}
+	
+	@Override
+	public Invoice setDefaultCompany(Invoice invoice) {
+		System.out.println("ffff" ); 
+		Int invoice.getCompany().getId();
+		System.out.println("gggg" ); 
+		System.out.println(company.getId()); 
+		System.out.println("vvvv" ); 
+		return invoice;
 	}
 }

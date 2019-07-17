@@ -17,5 +17,7 @@
 		
 		<one-to-many name="companyList" ref="com.axelor.gst.db.Company" mappedBy="address"/>
 		<many-to-one name="party" ref="com.axelor.gst.db.Party"/>
+		<one-to-many name="invoiceAddressList" ref="com.axelor.gst.db.Invoice" mappedBy="invoiceAddress"/>
+		<one-to-many name="invoiceShippingAddressList" ref="com.axelor.gst.db.Invoice" mappedBy="shippingAddress"/>
 	</entity>
 	</domain-models>
