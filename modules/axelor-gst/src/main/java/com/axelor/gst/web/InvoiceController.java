@@ -22,9 +22,7 @@ public class InvoiceController {
   public void setShippingAddress(ActionRequest request, ActionResponse response) {
 
     Invoice invoice = request.getContext().asType(Invoice.class);
-    System.out.println("ddd");
     service.setShippingAddress(invoice);
     response.setValue("shippingAddress", invoice.getShippingAddress());
-    System.out.println("hii");
   }
 }

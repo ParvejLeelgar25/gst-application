@@ -8,12 +8,12 @@
   	<field name="hsbn"/>
   </grid>
   
-  <form name="invoice-line-form" title="Invoice" model="com.axelor.gst.db.InvoiceLine">
-  	<field name="product" canNew="true" form-view="product-form" widget="SuggestBox"/>
+  <form name="invoice-line-form" title="Invoice" model="com.axelor.gst.db.InvoiceLine" onSave="action-record-invoice-line-record-on-save">
+  	<field name="product" canNew="true" form-view="product-form" widget="SuggestBox" onChange="action-invoice-line-record-product-on-change"/>
   	<field name="hsbn"/>
   	<field name="item"/>
-  	<field name="qty"/>
-  	<field name="price"/>
+  	<field name="qty" onChange="action-invoice-line-method-qty-price-on-change"/>
+  	<field name="price" onChange="action-invoice-line-method-qty-price-on-change"/>
   	<field name="netAmount"/>
   	<field name="gstRate"/>
   	<field name="igst"/>
@@ -22,8 +22,18 @@
   	<field name="grossAmount"/>
   </form>
   
-  <action-method name="action-invoice-line-method-net-amount-on-load">
-  	<call class="" method=""/>
+  <action-method name="action-invoice-line-method-qty-price-on-change">
+  	<call class="com.axelor.gst.web.InvoiceLineController" method="calcNetAmount"/>
   </action-method>
+  
+  <action-record name="action-invoice-line-record-product-on-change" model="com.axelor.gst.db.InvoiceLine">
+  	<field name="item" expr="eval: product.getName()"/>
+  	<field name="gstRate" expr="eval: product.getGstRate()"/>
+  </action-record>
+  
+  
+  <!-- <action-method name="action-method-invoice-line-on-save">
+  	<call class="com.axelor.gst.web.InvoiceLineController" method="setDetails"/>
+  </action-method> -->
   
   </object-views>

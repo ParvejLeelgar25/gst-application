@@ -25,7 +25,9 @@
 			<field name="netCgst"/>
 			<field name="netSgst"/>
 			<field name="grossAmount"/>
-			
+			<panel name="invoice-item-panel" title="Invoice Item">
+				<field name="invoiceItems" form-view="invoice-line-form"/>
+			</panel>
 		</panel>
 	</form>
 	
