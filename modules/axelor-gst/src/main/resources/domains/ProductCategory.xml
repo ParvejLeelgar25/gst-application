@@ -11,6 +11,6 @@
 		<string name="code" required="true" title="Code"/>
 		<decimal name="gstRate" title="GST Rate"/>
 		
-		<one-to-many name="productList" ref="com.axelor.gst.db.Product" mappedBy="productCategory"/>
+		<!-- <one-to-many name="productList" ref="com.axelor.gst.db.Product" mappedBy="productCategory"/> -->
 	</entity>
 	</domain-models>

@@ -37,13 +37,4 @@ public class GstServiceImpl implements GstService{
 		return city;
 	}
 	
-	@Override
-	public Invoice setDefaultCompany(Invoice invoice) {
-		System.out.println("ffff" ); 
-		Int invoice.getCompany().getId();
-		System.out.println("gggg" ); 
-		System.out.println(company.getId()); 
-		System.out.println("vvvv" ); 
-		return invoice;
-	}
 }

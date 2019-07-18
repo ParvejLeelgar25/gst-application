@@ -8,16 +8,38 @@
 		<field name="status" />
 	</grid>
 
-	<form name="invoice-form" title="Invoice" model="com.axelor.gst.db.Invoice" onNew="action-invoice-method-company-on-new">
+	<form name="invoice-form" title="Invoice" model="com.axelor.gst.db.Invoice" onNew="action-invoice-record-company-on-new">
 		<panel name="invoice-panel" itemSpan="12">
 			<field name="status" selection="invoice.status.selection" widget="NavSelect" />
-			<field name="company" canNew="true" form-view="company-form" widget="SuggestBox"/>
-			<field name="isUseInvoiceAddressAsShipping" />
+			<field name="company" canNew="true" widget="SuggestBox"/>
+			<field name="reference"/>
+			<field name="date"/>
+			<field name="priority"/>
+			<field name="party" canNew="true" form-view="party-form" widget="SuggestBox" onChange="action-invoice-method-party-on-change"/>
+			<field name="partyContact" widget="SuggestBox"/>
+			<field name="invoiceAddress" widget="SuggestBox"/>
+			<field name="shippingAddress" widget="SuggestBox" hideIf="isUseInvoiceAddressAsShipping == true"/>
+			<field name="isUseInvoiceAddressAsShipping" onChange="action-invoice-method-isUseInvoiceAddressAsShipping-on-change"/>
+			<field name="netAmount"/>
+			<field name="netIgst"/>
+			<field name="netCgst"/>
+			<field name="netSgst"/>
+			<field name="grossAmount"/>
+			
 		</panel>
 	</form>
 	
-	<action-method name="action-invoice-method-company-on-new" model="com.axelor.gst.db.Invoice">
-		<call class="com.axelor.gst.web.GstController" method="setDefaultCompany"/>
+	<action-record name="action-invoice-record-company-on-new" model="com.axelor.gst.db.Company">
+		
+		<field name="date" expr="eval: __datetime__"/>
+	</action-record>
+	
+	<action-method name="action-invoice-method-party-on-change">
+		<call class="com.axelor.gst.web.InvoiceController" method="setPartyData"/>
+	</action-method>
+	
+	<action-method name="action-invoice-method-isUseInvoiceAddressAsShipping-on-change">
+		<call class="com.axelor.gst.web.InvoiceController" method="setShippingAddress"/>
 	</action-method>
 
 </object-views>	

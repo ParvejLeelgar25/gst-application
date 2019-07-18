@@ -9,7 +9,7 @@
 	<entity name="Invoice">
 		<string name="status" readonly="true" selection="invoice.status.selection" title="Status"/>
 		<many-to-one name="company" required="true" ref="com.axelor.gst.db.Company" title="Company"/>
-		<string name="reference" title="Reference"/>
+		<string name="reference" readonly="true" title="Reference"/>
 		<datetime name="date" column="datetime" title="Date"/>
 		<integer name="priority" title="Priority"/>
 		<many-to-one name="party" required="true" ref="com.axelor.gst.db.Party" title="Party"/>

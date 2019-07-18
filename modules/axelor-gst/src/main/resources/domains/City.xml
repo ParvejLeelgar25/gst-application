@@ -10,6 +10,6 @@
 		<many-to-one name="country" ref="com.axelor.gst.db.Country" required="true" title="Country"/>
 		<many-to-one name="state" ref="com.axelor.gst.db.State" title="State"/>
 		
-		<one-to-many name="cityList" ref="com.axelor.gst.db.Address" mappedBy="city"/>
+		<!-- <one-to-many name="cityList" ref="com.axelor.gst.db.Address" mappedBy="city"/> -->
 	</entity>
 	</domain-models>

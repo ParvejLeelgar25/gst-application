@@ -35,9 +35,4 @@ public class GstController {
     response.setValue("name", valueOfName.getName());
   }
 
-  public void setDefaultCompany(ActionRequest request, ActionResponse response) {
-	  System.out.println("hiiieee");
-    Invoice invoice = request.getContext().asType(Invoice.class);
-    Invoice invoiceObject = service.setDefaultCompany(invoice);
-  }
 }

@@ -8,8 +8,8 @@
 	<entity name="Country">
 		<string name="name" required="true" unique="true" title="Name" />
 		
-		<one-to-many name="stateList" ref="com.axelor.gst.db.State" mappedBy="country"/>
+		<!-- <one-to-many name="stateList" ref="com.axelor.gst.db.State" mappedBy="country"/>
 		<one-to-many name="cityList" ref="com.axelor.gst.db.City" mappedBy="country"/>
-		<one-to-many name="cityAddressList" ref="com.axelor.gst.db.Address" mappedBy="country"/>
+		<one-to-many name="cityAddressList" ref="com.axelor.gst.db.Address" mappedBy="country"/> -->
 	</entity>
 </domain-models>

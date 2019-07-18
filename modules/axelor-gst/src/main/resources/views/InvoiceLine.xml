@@ -8,4 +8,22 @@
   	<field name="hsbn"/>
   </grid>
   
+  <form name="invoice-line-form" title="Invoice" model="com.axelor.gst.db.InvoiceLine">
+  	<field name="product" canNew="true" form-view="product-form" widget="SuggestBox"/>
+  	<field name="hsbn"/>
+  	<field name="item"/>
+  	<field name="qty"/>
+  	<field name="price"/>
+  	<field name="netAmount"/>
+  	<field name="gstRate"/>
+  	<field name="igst"/>
+  	<field name="sgst"/>
+  	<field name="cgst"/>
+  	<field name="grossAmount"/>
+  </form>
+  
+  <action-method name="action-invoice-line-method-net-amount-on-load">
+  	<call class="" method=""/>
+  </action-method>
+  
   </object-views>

@@ -9,7 +9,7 @@
 		<string name="name" required="true" unique="true" title="Name" />
 		<many-to-one name="country" ref="com.axelor.gst.db.Country" required="true" title="Country"/>
 		
-		<one-to-many name="cityList" ref="com.axelor.gst.db.City" mappedBy="state"/>
-		<one-to-many name="stateList" ref="com.axelor.gst.db.Address" mappedBy="state"/>
+		<!-- <one-to-many name="cityList" ref="com.axelor.gst.db.City" mappedBy="state"/>
+		<one-to-many name="stateList" ref="com.axelor.gst.db.Address" mappedBy="state"/> -->
 	</entity>
 	</domain-models>

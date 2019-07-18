@@ -15,9 +15,9 @@
 		<many-to-one name="country" ref="com.axelor.gst.db.Country" required="true" title="Country"/>
 		<string name="pinCode" title="Pin Code"/>
 		
-		<one-to-many name="companyList" ref="com.axelor.gst.db.Company" mappedBy="address"/>
+		<!-- <one-to-many name="companyList" ref="com.axelor.gst.db.Company" mappedBy="address"/>
 		<many-to-one name="party" ref="com.axelor.gst.db.Party"/>
 		<one-to-many name="invoiceAddressList" ref="com.axelor.gst.db.Invoice" mappedBy="invoiceAddress"/>
-		<one-to-many name="invoiceShippingAddressList" ref="com.axelor.gst.db.Invoice" mappedBy="shippingAddress"/>
+		<one-to-many name="invoiceShippingAddressList" ref="com.axelor.gst.db.Invoice" mappedBy="shippingAddress"/> -->
 	</entity>
 	</domain-models>

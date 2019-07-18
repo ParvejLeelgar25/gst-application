@@ -37,8 +37,8 @@
 					<field name="line1" />
 					<field name="line2" />
 					<field name="pinCode" />
-					<field name="city" widget="SuggestBox" canNew="true" form-view="city-form" onChange="action-party-attrs-city-on-change,action-party-record-city-on-change"/>
-					<field name="state" widget="SuggestBox" canNew="true" form-view="state-form" onChange="action-party-record-state-on-change,action-party-attrs-state-on-change"/>
+					<field name="city" widget="SuggestBox" canNew="true"  form-view="city-form" onChange="action-party-attrs-city-on-change,action-party-record-city-on-change"/>
+					<field name="state" widget="SuggestBox" canNew="true"  form-view="state-form" onChange="action-party-record-state-on-change,action-party-attrs-state-on-change"/>
 					<field name="country" widget="SuggestBox" canNew="true" form-view="country-form"/>
 				</editor>
 			</field>

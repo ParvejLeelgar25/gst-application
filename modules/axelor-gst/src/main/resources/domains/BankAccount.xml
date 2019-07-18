@@ -13,7 +13,7 @@
 		<string name="type" selection="bankAccount.type.selection" title="Type" default="current"/>
 		<string name="address" large="true" title="Address"/>
 		
-		<many-to-one name="company" ref="com.axelor.gst.db.Company"/>
+		<!-- <many-to-one name="company" ref="com.axelor.gst.db.Company"/> -->
 	</entity>
 	
 	</domain-models>

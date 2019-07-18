@@ -16,5 +16,4 @@ public interface GstService {
 	
 	public City upperCaseCityName(City city);
 	
-	public Invoice setDefaultCompany(Invoice invoice);
 }

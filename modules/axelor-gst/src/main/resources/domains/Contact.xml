@@ -13,8 +13,8 @@
 		<string name="primaryPhone" title="Primary Phone"/>
 		<string name="secondaryPhone" title="Secondary Phone"/>
 		
-		<many-to-one name="company" ref="com.axelor.gst.db.Company"/>
+		<!-- <many-to-one name="company" ref="com.axelor.gst.db.Company"/>
 		<many-to-one name="party" ref="com.axelor.gst.db.Party"/>
-		<one-to-many name="invoiceList" ref="com.axelor.gst.db.Invoice" mappedBy="partyContact"/>
+		<one-to-many name="invoiceList" ref="com.axelor.gst.db.Invoice" mappedBy="partyContact"/> -->
 	</entity>
 </domain-models>
