@@ -48,7 +48,6 @@ public class InvoiceServiceImpl implements InvoiceService {
     List<Address> addressList = new ArrayList<Address>();
     addressList = party.getAddressList();
     Address defaultShippingAddress = null;
-    boolean getBooleanData = invoice.getIsUseInvoiceAddressAsShipping();
     if (invoice.getIsUseInvoiceAddressAsShipping() == false) {
       if (addressList != null) {
         for (Address address : addressList) {
@@ -73,7 +72,6 @@ public class InvoiceServiceImpl implements InvoiceService {
 		List<InvoiceLine> invoiceItem = new ArrayList<InvoiceLine>();
 		invoiceItem = invoice.getInvoiceItems();
 		netAmount = invoiceItem.get(0).getNetAmount();
-		System.out.println(invoiceItem.get(0).getNetAmount()); 
 		invoice.setNetAmount(netAmount);
 	}
   
