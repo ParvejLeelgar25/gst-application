@@ -8,7 +8,7 @@
   	<field name="hsbn"/>
   </grid>
   
-  <form name="invoice-line-form" title="Invoice" model="com.axelor.gst.db.InvoiceLine" onSave="action-record-invoice-line-record-on-save">
+  <form name="invoice-line-form" title="Invoice" model="com.axelor.gst.db.InvoiceLine">
   	<field name="product" canNew="true" form-view="product-form" widget="SuggestBox" onChange="action-invoice-line-record-product-on-change"/>
   	<field name="hsbn"/>
   	<field name="item"/>
@@ -30,10 +30,6 @@
   	<field name="item" expr="eval: product.getName()"/>
   	<field name="gstRate" expr="eval: product.getGstRate()"/>
   </action-record>
-  
-  
-  <!-- <action-method name="action-method-invoice-line-on-save">
-  	<call class="com.axelor.gst.web.InvoiceLineController" method="setDetails"/>
-  </action-method> -->
+
   
   </object-views>

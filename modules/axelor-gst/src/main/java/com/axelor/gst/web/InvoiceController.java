@@ -2,6 +2,7 @@ package com.axelor.gst.web;
 
 import com.axelor.gst.db.Country;
 import com.axelor.gst.db.Invoice;
+import com.axelor.gst.db.InvoiceLine;
 import com.axelor.gst.service.InvoiceService;
 import com.axelor.rpc.ActionRequest;
 import com.axelor.rpc.ActionResponse;
@@ -24,5 +25,12 @@ public class InvoiceController {
     Invoice invoice = request.getContext().asType(Invoice.class);
     service.setShippingAddress(invoice);
     response.setValue("shippingAddress", invoice.getShippingAddress());
+  }
+
+  public void setDetails(ActionRequest request, ActionResponse response) {
+
+    Invoice invoice = request.getContext().asType(Invoice.class);
+    service.setDetails(invoice);
+    response.setValue("netAmount", invoice.getNetAmount());
   }
 }

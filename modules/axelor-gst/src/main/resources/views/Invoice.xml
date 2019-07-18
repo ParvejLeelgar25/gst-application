@@ -25,8 +25,8 @@
 			<field name="netCgst"/>
 			<field name="netSgst"/>
 			<field name="grossAmount"/>
-			<panel name="invoice-item-panel" title="Invoice Item">
-				<field name="invoiceItems" form-view="invoice-line-form"/>
+			<panel name="invoice-item-panel" title="Invoice Item" >
+				<field name="invoiceItems" form-view="invoice-line-form" onChange="action-invoice-method-invoice-item-on-change"/>
 			</panel>
 		</panel>
 	</form>
@@ -43,5 +43,9 @@
 	<action-method name="action-invoice-method-isUseInvoiceAddressAsShipping-on-change">
 		<call class="com.axelor.gst.web.InvoiceController" method="setShippingAddress"/>
 	</action-method>
+	
+  	<action-method name="action-invoice-method-invoice-item-on-change">
+  		<call class="com.axelor.gst.web.InvoiceController" method="setDetails"/>
+  	</action-method>
 
 </object-views>	

@@ -1,11 +1,13 @@
 package com.axelor.gst.service;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.axelor.gst.db.Address;
 import com.axelor.gst.db.Contact;
 import com.axelor.gst.db.Invoice;
+import com.axelor.gst.db.InvoiceLine;
 import com.axelor.gst.db.Party;
 
 public class InvoiceServiceImpl implements InvoiceService {
@@ -58,4 +60,21 @@ public class InvoiceServiceImpl implements InvoiceService {
     }
     invoice.setShippingAddress(defaultShippingAddress);
   }
+  
+  @Override
+	public void setDetails(Invoice invoice) {
+		
+		BigDecimal netAmount = BigDecimal.ZERO;
+		BigDecimal grossAmount = BigDecimal.ZERO;
+		BigDecimal igst = BigDecimal.ZERO;
+		BigDecimal sgst = BigDecimal.ZERO;
+		BigDecimal cgst = BigDecimal.ZERO;
+		
+		List<InvoiceLine> invoiceItem = new ArrayList<InvoiceLine>();
+		invoiceItem = invoice.getInvoiceItems();
+		netAmount = invoiceItem.get(0).getNetAmount();
+		System.out.println(invoiceItem.get(0).getNetAmount()); 
+		invoice.setNetAmount(netAmount);
+	}
+  
 }

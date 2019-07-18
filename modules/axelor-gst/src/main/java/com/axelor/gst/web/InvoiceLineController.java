@@ -22,11 +22,4 @@ public class InvoiceLineController {
     response.setValue("cgst", invoiceLine.getCgst());
     response.setValue("grossAmount", invoiceLine.getGrossAmount());
   }
-
-  /*public void setDetails(ActionRequest request, ActionResponse response) {
-
-    InvoiceLine invoiceLine = request.getContext().asType(InvoiceLine.class);
-    Invoice invoice = request.getContext().getParent().asType(Invoice.class);
-    service.setDetails(invoiceLine, invoice);
-  }*/
 }

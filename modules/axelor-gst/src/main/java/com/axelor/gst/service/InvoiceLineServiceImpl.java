@@ -15,17 +15,19 @@ public class InvoiceLineServiceImpl implements InvoiceLineService{
 		BigDecimal igst = BigDecimal.ZERO;
 		BigDecimal sgst = BigDecimal.ZERO;
 		BigDecimal cgst = BigDecimal.ZERO;
+		BigDecimal netAmountPercent = BigDecimal.ZERO;
 		
-		netAmount = invoiceLine.getPrice().multiply(BigDecimal.valueOf(invoiceLine.getQty()));	
+		netAmount = invoiceLine.getPrice().multiply(BigDecimal.valueOf(invoiceLine.getQty()));
+		netAmountPercent = (netAmount.multiply(invoiceLine.getGstRate())).divide(BigDecimal.valueOf(100));
 		if(!(invoice.getCompany().getAddress().getState().equals(invoice.getInvoiceAddress().getState()))) {
-			igst = netAmount.multiply(invoiceLine.getGstRate());
+			igst = netAmountPercent;
 			grossAmount = netAmount.add(igst);	
 		}
 		
 		else
 		{
-			sgst = (netAmount.multiply(invoiceLine.getGstRate())).divide(BigDecimal.valueOf(2));
-			cgst = (netAmount.multiply(invoiceLine.getGstRate())).divide(BigDecimal.valueOf(2));
+			sgst = (netAmountPercent).divide(BigDecimal.valueOf(2));
+			cgst = (netAmountPercent).divide(BigDecimal.valueOf(2));
 			grossAmount = netAmount.add(sgst).add(cgst);
 		} 
 		invoiceLine.setNetAmount(netAmount);
@@ -35,17 +37,6 @@ public class InvoiceLineServiceImpl implements InvoiceLineService{
 		invoiceLine.setGrossAmount(grossAmount);
 	}
 	
-/*	@Override
-	public void setDetails(InvoiceLine invoiceLine,Invoice invoice) {
-		
-		BigDecimal netAmount = BigDecimal.ZERO;
-		BigDecimal grossAmount = BigDecimal.ZERO;
-		BigDecimal igst = BigDecimal.ZERO;
-		BigDecimal sgst = BigDecimal.ZERO;
-		BigDecimal cgst = BigDecimal.ZERO;
-		
-		netAmount = invoiceLine.getNetAmount();
-		invoice.setNetAmount(netAmount);
-	}*/
+	
 
 }
