@@ -69,9 +69,21 @@ public class InvoiceServiceImpl implements InvoiceService {
     BigDecimal sgst = BigDecimal.ZERO;
     BigDecimal cgst = BigDecimal.ZERO;
 
-    List<InvoiceLine> invoiceItem = new ArrayList<InvoiceLine>();
-    invoiceItem = invoice.getInvoiceItems();
-    netAmount = invoiceItem.get(0).getNetAmount();
+    List<InvoiceLine> invoiceItemList = new ArrayList<InvoiceLine>();
+    invoiceItemList = invoice.getInvoiceItems();
+    if (invoiceItemList != null) {
+      for (InvoiceLine invoiceItem : invoiceItemList) {
+        netAmount = netAmount.add(invoiceItem.getNetAmount());
+        igst = igst.add(invoiceItem.getIgst());
+        sgst = sgst.add(invoiceItem.getSgst());
+        cgst = cgst.add(invoiceItem.getCgst());
+        grossAmount = grossAmount.add(invoiceItem.getGrossAmount());
+      }
+    }
     invoice.setNetAmount(netAmount);
+    invoice.setNetIgst(igst);
+    invoice.setNetCgst(cgst);
+    invoice.setNetSgst(sgst);
+    invoice.setGrossAmount(grossAmount);
   }
 }

@@ -32,5 +32,9 @@ public class InvoiceController {
     Invoice invoice = request.getContext().asType(Invoice.class);
     service.setDetails(invoice);
     response.setValue("netAmount", invoice.getNetAmount());
+    response.setValue("netIgst", invoice.getNetIgst());
+    response.setValue("netSgst", invoice.getNetSgst());
+    response.setValue("netCgst", invoice.getNetCgst());
+    response.setValue("grossAmount", invoice.getGrossAmount());
   }
 }
