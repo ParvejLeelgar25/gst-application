@@ -9,17 +9,19 @@
   </grid>
   
   <form name="invoice-line-form" title="Invoice" model="com.axelor.gst.db.InvoiceLine">
-  	<field name="product" canNew="true" form-view="product-form" widget="SuggestBox" onChange="action-invoice-line-record-product-on-change"/>
-  	<field name="hsbn"/>
-  	<field name="item"/>
-  	<field name="qty" onChange="action-invoice-line-method-qty-price-on-change"/>
-  	<field name="price" onChange="action-invoice-line-method-qty-price-on-change"/>
-  	<field name="netAmount"/>
-  	<field name="gstRate"/>
-  	<field name="igst"/>
-  	<field name="sgst"/>
-  	<field name="cgst"/>
-  	<field name="grossAmount"/>
+  	<panel name="invoice-line-panel" title="Invoice Line">
+  		<field name="product" canNew="true" form-view="product-form" widget="SuggestBox" onChange="action-invoice-line-record-product-on-change"/>
+  		<field name="hsbn"/>
+  		<field name="item"/>
+  		<field name="qty" onChange="action-invoice-line-method-qty-price-on-change"/>
+  		<field name="price" onChange="action-invoice-line-method-qty-price-on-change"/>
+  		<field name="netAmount"/>
+  		<field name="gstRate"/>
+  		<field name="igst"/>
+  		<field name="sgst"/>
+  		<field name="cgst"/>
+  		<field name="grossAmount"/>
+  	</panel>
   </form>
   
   <action-method name="action-invoice-line-method-qty-price-on-change">

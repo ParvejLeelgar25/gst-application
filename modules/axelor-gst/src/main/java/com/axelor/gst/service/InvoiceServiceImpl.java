@@ -15,44 +15,51 @@ public class InvoiceServiceImpl implements InvoiceService {
   @Override
   public void setPartyData(Invoice invoice) {
 
-    Party party = invoice.getParty();
     List<Contact> contactList = new ArrayList<Contact>();
     List<Address> addressList = new ArrayList<Address>();
     Contact primaryContact = null;
     Address defaultInvoiceAddress = null;
-    contactList = party.getContactList();
-    addressList = party.getAddressList();
 
-    if (contactList != null) {
-      for (Contact contact : contactList) {
-        if (contact.getType().equals("primary")) {
-          primaryContact = contact;
+    if (invoice.getParty() != null) {
+      Party party = invoice.getParty();
+      contactList = party.getContactList();
+      addressList = party.getAddressList();
+
+      if (contactList != null) {
+        for (Contact contact : contactList) {
+          if (contact.getType().equals("primary")) {
+            primaryContact = contact;
+          }
+        }
+      }
+
+      if (addressList != null) {
+        for (Address address : addressList) {
+          if (address.getType().equals("default") || address.getType().equals("invoice")) {
+            defaultInvoiceAddress = address;
+          }
         }
       }
     }
     invoice.setPartyContact(primaryContact);
-
-    if (addressList != null) {
-      for (Address address : addressList) {
-        if (address.getType().equals("default") || address.getType().equals("invoice")) {
-          defaultInvoiceAddress = address;
-        }
-      }
-    }
     invoice.setInvoiceAddress(defaultInvoiceAddress);
   }
 
   @Override
   public void setShippingAddress(Invoice invoice) {
-    Party party = invoice.getParty();
-    List<Address> addressList = new ArrayList<Address>();
-    addressList = party.getAddressList();
+
     Address defaultShippingAddress = null;
-    if (invoice.getIsUseInvoiceAddressAsShipping() == false) {
-      if (addressList != null) {
-        for (Address address : addressList) {
-          if (address.getType().equals("default") || address.getType().equals("shipping")) {
-            defaultShippingAddress = address;
+    if (invoice.getParty() != null) {
+      Party party = invoice.getParty();
+      List<Address> addressList = new ArrayList<Address>();
+      addressList = party.getAddressList();
+
+      if (invoice.getIsUseInvoiceAddressAsShipping() == false) {
+        if (addressList != null) {
+          for (Address address : addressList) {
+            if (address.getType().equals("default") || address.getType().equals("shipping")) {
+              defaultShippingAddress = address;
+            }
           }
         }
       }
