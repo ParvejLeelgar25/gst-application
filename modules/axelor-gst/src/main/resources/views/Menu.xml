@@ -21,6 +21,8 @@
   <action-view name="gst.root.party.party" title="Party" model="com.axelor.gst.db.Party">
   	<view type="grid" name="party-grid"/>
   	<view type="form" name="party-form"/>
+  	<view type="cards" name="party-card"/>
+  	<context name="json-enhance" expr="true"/>
   </action-view>
   
   <menuitem title="Contact" name="gst-root-party-contact" parent="gst-root-party" action="gst.root.party.contact"/>
@@ -83,6 +85,7 @@
   <menuitem title="Create Invoice" name="gst-root-invoice-create-invoice" parent="gst-root-invoice" action="gst.root.invoice.create.invoice"/>
   
   <action-view name="gst.root.invoice.create.invoice" title="Create Invoice" model="com.axelor.gst.db.Invoice">
+  	<view type="grid" name="invoice-grid"/>
   	<view type="form" name="invoice-form"/>
   </action-view>
   

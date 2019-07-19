@@ -60,5 +60,34 @@
 	<action-attrs name="action-party-attrs-city-on-change" model="com.axelor.gst.db.Party">
 		<attribute name="readonly" for="country" expr=""/>
 	</action-attrs>
+	
+<cards name="party-cards" title="Party" model="com.axelor.gst.db.Party">
+  <field name="reference"/>
+  <field name="name"/>
+  <field name="type"/>
+  <field name="gstIn"/>
+  <field name="isCustomer"/>
+  <field name="isSupplier"/>
+  <field name="contactList"/>
+  <field name="addressList"/>
+  <template><![CDATA[
+	<div class="span4">
+		<strong>Reference:</strong>{{reference}}<br>
+    			<strong>Name:</strong>{{name}}<br>
+    			<strong>Type:</strong>{{type}}<br>
+    			<strong>Is Customer:</strong>{{isCustomer}}<br>
+    			<strong>Is Supplier:</strong>{{isSupplier}}<br>
+    			<strong>GST In:</strong>{{gstIn}}<br>
+  		</div>
+  		<div class="span8">
+  			<address>
+  					<strong>Address</strong><br>
+  			 		<strong>Type:{{address.type}}</strong><strong>&nbsp;&nbsp;&nbsp;City:{{address.city.name}}</strong><br>
+						<strong>State:{{address.state.name}}</strong> <strong>&nbsp;&nbsp;&nbsp;Country:{{address.country.name}}</strong><br>
+						<strong>Line:{{address.line1}}</strong> <strong>&nbsp;&nbsp;&nbsp;Pincode:{{address.pinCode}}</strong><br>
+        	<address>
+  		</div>
+]]></template>
+</cards>
 
 </object-views>
