@@ -17,7 +17,7 @@
 	</form>
 	
 	<action-method name="action-state-method-name-on-save" model="com.axelor.gst.db.State">
-		<call class="com.axelor.gst.web.GstController" method="upperCaseStateName"/>
+		<call class="com.axelor.gst.web.StateController" method="upperCaseStateName"/>
 	</action-method>
 
 </object-views>

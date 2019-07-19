@@ -32,7 +32,7 @@
 	</form>
 	
 	<action-record name="action-invoice-record-company-on-new" model="com.axelor.gst.db.Company">
-		
+		<!-- <field name="company" expr="eval: __repo__(Company).all().fetchOne()"/> -->
 		<field name="date" expr="eval: __datetime__"/>
 	</action-record>
 	

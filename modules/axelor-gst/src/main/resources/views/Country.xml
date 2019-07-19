@@ -15,7 +15,7 @@
 	</form>
 	
 	<action-method name="action-country-method-name-on-save" model="com.axelor.gst.db.Country">
-		<call class="com.axelor.gst.web.GstController" method="upperCaseCountryName"/>
+		<call class="com.axelor.gst.web.CountryController" method="upperCaseCountryName"/>
 	</action-method>
   
   </object-views>

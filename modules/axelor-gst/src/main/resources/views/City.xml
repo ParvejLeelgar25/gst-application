@@ -17,7 +17,7 @@
 	</form>
 	
 	<action-method name="action-city-method-name-on-save" model="com.axelor.gst.db.City">
-		<call class="com.axelor.gst.web.GstController" method="upperCaseCityName"/>
+		<call class="com.axelor.gst.web.CityController" method="upperCaseCityName"/>
 	</action-method>
 	
 	<action-record name="action-city-record-state-on-change" model="com.axelor.gst.db.City">
