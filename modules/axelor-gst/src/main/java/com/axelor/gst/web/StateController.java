@@ -7,13 +7,13 @@ import com.axelor.rpc.ActionResponse;
 import com.google.inject.Inject;
 
 public class StateController {
-	
-	@Inject private StateService service;
-	
-	public void upperCaseStateName(ActionRequest request, ActionResponse response) {
 
-	    State state = request.getContext().asType(State.class);
-	    State valueOfName = service.upperCaseStateName(state);
-	    response.setValue("name", valueOfName.getName());
-	  }
+  @Inject private StateService service;
+
+  public void upperCaseStateName(ActionRequest request, ActionResponse response) {
+
+    State state = request.getContext().asType(State.class);
+    State valueOfName = service.upperCaseStateName(state);
+    response.setValue("name", valueOfName.getName());
+  }
 }

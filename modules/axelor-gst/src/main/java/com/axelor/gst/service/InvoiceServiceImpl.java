@@ -59,20 +59,19 @@ public class InvoiceServiceImpl implements InvoiceService {
     }
     invoice.setShippingAddress(defaultShippingAddress);
   }
-  
+
   @Override
-	public void setDetails(Invoice invoice) {
-		
-		BigDecimal netAmount = BigDecimal.ZERO;
-		BigDecimal grossAmount = BigDecimal.ZERO;
-		BigDecimal igst = BigDecimal.ZERO;
-		BigDecimal sgst = BigDecimal.ZERO;
-		BigDecimal cgst = BigDecimal.ZERO;
-		
-		List<InvoiceLine> invoiceItem = new ArrayList<InvoiceLine>();
-		invoiceItem = invoice.getInvoiceItems();
-		netAmount = invoiceItem.get(0).getNetAmount();
-		invoice.setNetAmount(netAmount);
-	}
-  
+  public void setDetails(Invoice invoice) {
+
+    BigDecimal netAmount = BigDecimal.ZERO;
+    BigDecimal grossAmount = BigDecimal.ZERO;
+    BigDecimal igst = BigDecimal.ZERO;
+    BigDecimal sgst = BigDecimal.ZERO;
+    BigDecimal cgst = BigDecimal.ZERO;
+
+    List<InvoiceLine> invoiceItem = new ArrayList<InvoiceLine>();
+    invoiceItem = invoice.getInvoiceItems();
+    netAmount = invoiceItem.get(0).getNetAmount();
+    invoice.setNetAmount(netAmount);
+  }
 }

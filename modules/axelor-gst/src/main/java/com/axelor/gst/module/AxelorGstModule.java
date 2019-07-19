@@ -12,15 +12,14 @@ import com.axelor.gst.service.InvoiceServiceImpl;
 import com.axelor.gst.service.StateService;
 import com.axelor.gst.service.StateServiceImpl;
 
-public class AxelorGstModule extends AxelorModule{
-	
-	protected void configure() {
+public class AxelorGstModule extends AxelorModule {
 
-	    bind(InvoiceService.class).to(InvoiceServiceImpl.class);
-	    bind(InvoiceLineService.class).to(InvoiceLineServiceImpl.class);
-	    bind(CityService.class).to(CityServiceImpl.class);
-	    bind(StateService.class).to(StateServiceImpl.class);
-	    bind(CountryService.class).to(CountryServiceImpl.class);
-	  }
-	
+  protected void configure() {
+
+    bind(InvoiceService.class).to(InvoiceServiceImpl.class);
+    bind(InvoiceLineService.class).to(InvoiceLineServiceImpl.class);
+    bind(CityService.class).to(CityServiceImpl.class);
+    bind(StateService.class).to(StateServiceImpl.class);
+    bind(CountryService.class).to(CountryServiceImpl.class);
+  }
 }

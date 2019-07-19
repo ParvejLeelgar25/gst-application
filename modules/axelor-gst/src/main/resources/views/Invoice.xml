@@ -25,14 +25,14 @@
 			<field name="netCgst"/>
 			<field name="netSgst"/>
 			<field name="grossAmount"/>
-			<panel name="invoice-item-panel" title="Invoice Item" >
+			<panel name="invoice-item-panel" title="Invoice Item">
 				<field name="invoiceItems" form-view="invoice-line-form" onChange="action-invoice-method-invoice-item-on-change"/>
 			</panel>
 		</panel>
 	</form>
 	
 	<action-record name="action-invoice-record-company-on-new" model="com.axelor.gst.db.Company">
-		<!-- <field name="company" expr="eval: __repo__(Company).all().fetchOne()"/> -->
+		<field name="company" expr="eval: __repo__(Company).all().fetchOne()"/>
 		<field name="date" expr="eval: __datetime__"/>
 	</action-record>
 	

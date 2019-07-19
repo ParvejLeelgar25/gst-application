@@ -7,13 +7,13 @@ import com.axelor.rpc.ActionResponse;
 import com.google.inject.Inject;
 
 public class CityController {
-	
-	@Inject private CityService service;
-	
-	public void upperCaseCityName(ActionRequest request, ActionResponse response) {
 
-	    City city = request.getContext().asType(City.class);
-	    City valueOfName = service.upperCaseCityName(city);
-	    response.setValue("name", valueOfName.getName());
-	  }
+  @Inject private CityService service;
+
+  public void upperCaseCityName(ActionRequest request, ActionResponse response) {
+
+    City city = request.getContext().asType(City.class);
+    City valueOfName = service.upperCaseCityName(city);
+    response.setValue("name", valueOfName.getName());
+  }
 }
