@@ -129,6 +129,7 @@
   <action-view name="gst.root.invoice.all.invoices" title="All Invoices" model="com.axelor.gst.db.Invoice">
   	<view type="grid" name="invoice-grid"/>
   	<view type="form" name="invoice-form"/>
+  	<view type="kanban" name="invoice-kanban"/>
   </action-view>
   
   <menuitem title="Comapny" name="gst-root-company" parent="gst-root"/>

@@ -31,7 +31,6 @@
 			</panel>
 		</panel>
 		<panel sidebar="true">
-			<!-- <button name="draft" title="Draft" onClick="action-invoice-attrs-draft-on-click" hidden="true"/> -->
 			<button name="validate" title="Validate" onClick="action-invoice-validate-on-click" hidden="true" showIf="status=='draft'"/>
 			<button name="paid" title="Paid" onClick="action-invoice-paid-on-click" hidden="true" showIf="status=='validated'" hideIf="status=='draft'"/>
 			<button name="cancel" title="Cancel" onClick="action-invoice-cancel-on-click" hideIf="status=='cancelled'"/>
@@ -70,6 +69,24 @@
   	<action-attrs name="action-invoice-cancel-on-click">
   		<attribute name="value" for="status" expr="eval: status='cancelled'"/>
   	</action-attrs>
+  	
+  	<kanban name="invoice-kanban" sequenceBy="priority" model="com.axelor.gst.db.Invoice" columnBy="status" title="Invoice">
+  		<field name="company" />
+		<field name="party" />
+		<field name="date" />
+		<hilite color="danger" if="priority == 0" />
+		<hilite color="success" if="priority == 100" />
+		<hilite color="info" if="priority &gt;= 50" />
+		<hilite color="warning" if="priority &gt; 0" />
+		<template><![CDATA[
+   			<h4>{{company.name}}</h4>
+    		<div class="card-body">{{party.name}}
+    		</div>
+    		<div class="card-footer">
+      			<i class='fa fa-clock-o'></i> <span>{{date|date:'yyyy-MM-dd HH:mm:ss'}}</span>
+    		</div>
+    ]]></template>
+  	</kanban>
   	
   	
 
