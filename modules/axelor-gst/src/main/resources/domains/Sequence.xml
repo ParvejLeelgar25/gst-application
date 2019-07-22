@@ -11,6 +11,6 @@
 		<string name="suffix" title="Suffix"/>
 		<integer name="padding" min="1" max="10" title="Padding"/>
 		<string name="nextNumber" title="Next Number"/>
-		<many-to-one name="model" ref="com.axelor.meta.db.MetaModel" title="Model"/>
+		<many-to-one name="model" required="true" ref="com.axelor.meta.db.MetaModel" title="Model"/>
 	</entity>
 	</domain-models>

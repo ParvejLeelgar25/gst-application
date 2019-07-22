@@ -5,4 +5,6 @@ import com.axelor.gst.db.Sequence;
 public interface SequenceService {
 	
 	public void setNextNumber(Sequence sequence);
+	
+	public void giveReference(String model);
 }

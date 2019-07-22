@@ -4,6 +4,9 @@ import java.util.Map;
 
 import com.axelor.gst.db.Party;
 import com.axelor.gst.db.Product;
+import com.axelor.gst.service.SequenceService;
+import com.beust.jcommander.Strings;
+import com.google.inject.Inject;
 
 public class PartyManageRepository extends PartyRepository{
 	
