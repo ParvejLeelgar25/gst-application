@@ -19,6 +19,7 @@ public class InvoiceServiceImpl implements InvoiceService {
     List<Address> addressList = new ArrayList<Address>();
     Contact primaryContact = null;
     Address defaultInvoiceAddress = null;
+    Address defaultShippingAddress = null;
 
     if (invoice.getParty() != null) {
       Party party = invoice.getParty();
@@ -38,11 +39,15 @@ public class InvoiceServiceImpl implements InvoiceService {
           if (address.getType().equals("default") || address.getType().equals("invoice")) {
             defaultInvoiceAddress = address;
           }
+          if(address.getType().equals("default") || address.getType().equals("shipping")) {
+        	  defaultShippingAddress = address;
+          }
         }
       }
     }
     invoice.setPartyContact(primaryContact);
     invoice.setInvoiceAddress(defaultInvoiceAddress);
+    invoice.setShippingAddress(defaultShippingAddress);
   }
 
   @Override

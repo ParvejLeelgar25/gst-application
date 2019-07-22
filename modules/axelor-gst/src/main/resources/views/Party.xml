@@ -79,13 +79,24 @@
     			<strong>Is Supplier:</strong>{{isSupplier}}<br>
     			<strong>GST In:</strong>{{gstIn}}<br>
   		</div>
-  		<div class="span8">
+  		<div class="span4">
   			<address>
   					<strong>Address</strong><br>
   			 		<strong>Type:{{address.type}}</strong><strong>&nbsp;&nbsp;&nbsp;City:{{address.city.name}}</strong><br>
-						<strong>State:{{address.state.name}}</strong> <strong>&nbsp;&nbsp;&nbsp;Country:{{address.country.name}}</strong><br>
-						<strong>Line:{{address.line1}}</strong> <strong>&nbsp;&nbsp;&nbsp;Pincode:{{address.pinCode}}</strong><br>
+					<strong>State:{{address.state.name}}</strong> <strong>&nbsp;&nbsp;&nbsp;Country:{{address.country.name}}</strong><br>
+					<strong>Line:{{address.line1}}</strong> <strong>&nbsp;&nbsp;&nbsp;Pincode:{{address.pinCode}}</strong><br>
         	<address>
+  		</div>
+  		<div class="span4">
+  			<contact>
+  				<strong>Contact</strong><br>
+  				<strong>Name:{{contact.name}}</strong><br>
+  				<strong>Type:{{contact.type}}</strong><br>
+  				<strong>Email1:{{contact.primaryEmail}}</strong><br>
+  				<strong>Email2:{{contact.secondaryEmail}}</strong><br>
+  				<strong>Phone1:{{contact.primaryPhone}}<strong><br>
+  				<strong>Phone2:{{contact.secondaryPhone}}</strong><br>
+  			</contact>
   		</div>
 ]]></template>
 </cards>

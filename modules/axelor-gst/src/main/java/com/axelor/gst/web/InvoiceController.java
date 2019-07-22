@@ -18,6 +18,7 @@ public class InvoiceController {
     service.setPartyData(invoice);
     response.setValue("partyContact", invoice.getPartyContact());
     response.setValue("invoiceAddress", invoice.getInvoiceAddress());
+    response.setValue("shippingAddress", invoice.getShippingAddress());
   }
 
   public void setShippingAddress(ActionRequest request, ActionResponse response) {
