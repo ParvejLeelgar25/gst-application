@@ -8,7 +8,7 @@
 
 		<toolbar>
 			<button name="createInvoice" icon="fa-print" onClick="" title="Create Invoice" />
-			<button name="print" icon="fa-print" onClick="" title="Report" />
+			<button name="print" icon="fa-print" onClick="action-product-method-button-print-on-click,action-product-report-button-print-on-click" title="Report" />
 		</toolbar>
 
 		<field name="name" />
@@ -41,6 +41,14 @@
 	<action-record name="action-product-record-product-category-on-change" model="com.axelor.gst.db.Product">
 		<field name="gstRate" expr="eval: productCategory.getGstRate()" />
 	</action-record>
+	
+	<action-report name="action-product-report-button-print-on-click" design="Product.rptdesign" output="Product" format="pdf">
+		<param name="productId" expr="eval: productId"/>
+	</action-report>
+	
+	<action-method name="action-product-method-button-print-on-click">
+		<call class="com.axelor.gst.web.ProductController" method="report"/>
+	</action-method>
 
 	<cards name="product-cards" title="Product" model="com.axelor.gst.db.Product">
 		<field name="name" />
