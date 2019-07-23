@@ -14,7 +14,7 @@
 		<panel name="invoice-panel" itemSpan="12">
 			<field name="status" selection="invoice.status.selection" widget="NavSelect" />
 			<field name="company" canNew="true" widget="SuggestBox" />
-			<field name="reference" />
+			<field name="reference"/>
 			<field name="date" />
 			<field name="priority" />
 			<field name="party" canNew="true" form-view="party-form" widget="SuggestBox" 
@@ -38,7 +38,7 @@
 		
 		<panel sidebar="true">
 			<button name="validate" title="Validate"
-				onClick="action-invoice-validate-on-click" hidden="true" showIf="status=='draft'" />
+				onClick="action-invoice-method-button-validate-on-click,action-invoice-validate-on-click" hidden="true" showIf="status=='draft'" />
 			<button name="paid" title="Paid" onClick="action-invoice-paid-on-click"
 				hidden="true" showIf="status=='validated'" hideIf="status=='draft'" />
 			<button name="cancel" title="Cancel" onClick="action-invoice-cancel-on-click"
@@ -79,6 +79,10 @@
 	<action-attrs name="action-invoice-cancel-on-click">
 		<attribute name="value" for="status" expr="eval: status='cancelled'" />
 	</action-attrs>
+	
+	<action-method name="action-invoice-method-button-validate-on-click">
+		<call class="com.axelor.gst.web.InvoiceController" method="getReference"/>
+	</action-method>
 
 	<kanban name="invoice-kanban" sequenceBy="priority"
 		model="com.axelor.gst.db.Invoice" columnBy="status" title="Invoice">

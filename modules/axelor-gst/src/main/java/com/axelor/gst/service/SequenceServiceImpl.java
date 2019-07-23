@@ -38,7 +38,6 @@ public class SequenceServiceImpl implements SequenceService {
     String reference = null;
 
     if (sequence != null) {
-
       String nextNumber = sequence.getNextNumber();
       int prefixLength = sequence.getPrefix().length();
       int nextNumberLength = sequence.getNextNumber().length();
