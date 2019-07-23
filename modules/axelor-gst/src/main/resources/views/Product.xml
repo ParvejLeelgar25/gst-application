@@ -7,8 +7,7 @@
 	<grid name="product-grid" title="Product" model="com.axelor.gst.db.Product">
 
 		<toolbar>
-			<button name="createInvoice" icon="fa-print" onClick=""
-				title="Create Invoice" />
+			<button name="createInvoice" icon="fa-print" onClick="" title="Create Invoice" />
 			<button name="print" icon="fa-print" onClick="" title="Report" />
 		</toolbar>
 
@@ -23,41 +22,42 @@
 	<form name="product-form" title="Product" model="com.axelor.gst.db.Product">
 
 		<panel name="product-panel" title="Product">
-			<field name="image" widget="image"/>
+			<field name="image" widget="image" />
 			<field name="name" />
 			<field name="code" />
 			<field name="hsbn" />
 			<field name="salePrice" />
 			<field name="costPrice" />
-			<field name="productCategory" form-view="product-category-form"
-				canNew="true" onChange="action-product-attrs-product-category-on-change,action-product-record-product-category-on-change"/>
+			<field name="productCategory" form-view="product-category-form" canNew="true"
+				onChange="action-product-attrs-product-category-on-change,action-product-record-product-category-on-change" />
 			<field name="gstRate" />
 		</panel>
 	</form>
-	
+
 	<action-attrs name="action-product-attrs-product-category-on-change" model="com.axelor.gst.db.Product">
-		<attribute name="readonly" for="gstRate" expr=""/>
+		<attribute name="readonly" for="gstRate" expr="" />
 	</action-attrs>
-	
+
 	<action-record name="action-product-record-product-category-on-change" model="com.axelor.gst.db.Product">
-		<field name="gstRate" expr="eval: productCategory.getGstRate()"/>
+		<field name="gstRate" expr="eval: productCategory.getGstRate()" />
 	</action-record>
-	
+
 	<cards name="product-cards" title="Product" model="com.axelor.gst.db.Product">
-  		<field name="name"/>
-  		<field name="hasImage"/>
-  		<field name="code"/>
-  		<field name="hsbn"/>
-  		<field name="salePrice"/>
-  		<field name="costPrice"/>
-  		<field name="gstRate"/>
-  		<field name="productCategory"/>
-  		<template><![CDATA[
+		<field name="name" />
+		<field name="hasImage" />
+		<field name="code" />
+		<field name="hsbn" />
+		<field name="salePrice" />
+		<field name="costPrice" />
+		<field name="gstRate" />
+		<field name="productCategory" />
+		<template><![CDATA[
 			<div class="span4 card-image">
       			<img ng-if="hasImage" ng-src="{{$image(null, 'image')}}">
       			<img ng-if="!hasImage" src="img/user.png">
       			<strong>{{name}}</strong>
     		</div>
+    		
 			<div class="span8">
  				<strong>Code:</strong>{{code}}<br>
 				<strong>HSBN:</strong>{{hsbn}}<br>
@@ -67,6 +67,6 @@
 				<strong>Product Category:</strong>{{productCategory.name}}
 			</div>
 		]]></template>
-	</cards>	
+	</cards>
 
 </object-views>

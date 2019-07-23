@@ -3,25 +3,26 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://axelor.com/xml/ns/object-views
   http://axelor.com/xml/ns/object-views/object-views_5.0.xsd">
-  
-  <grid name="sequence-grid" title="sequence" model="com.axelor.gst.db.Sequence">
-  	<field name="prefix"/>
-  	<field name="suffix"/>
-  	<field name="padding"/>
-  	<field name="nextNumber"/>
-  </grid>
-  
-  <form name="sequence-form" title="sequence" model="com.axelor.gst.db.Sequence" onSave="action-sequence-method-next-number-on-save">
-  	<panel name="sequence-panel" title="Sequence">
-  		<field name="prefix"/>
-  		<field name="suffix"/>
-  		<field name="padding"/>
-  		<field name="model"/>
-  	</panel>
-  </form>
-  
-  <action-method name="action-sequence-method-next-number-on-save">
-  	<call class="com.axelor.gst.web.SequenceController" method="setNextNumber"/>
-  </action-method>
-  
-  </object-views>
+
+	<grid name="sequence-grid" title="sequence" model="com.axelor.gst.db.Sequence">
+		<field name="prefix" />
+		<field name="suffix" />
+		<field name="padding" />
+		<field name="nextNumber" />
+	</grid>
+
+	<form name="sequence-form" title="sequence" model="com.axelor.gst.db.Sequence" 
+		onSave="action-sequence-method-next-number-on-save">
+		<panel name="sequence-panel" title="Sequence">
+			<field name="prefix" />
+			<field name="suffix" />
+			<field name="padding" />
+			<field name="model" />
+		</panel>
+	</form>
+
+	<action-method name="action-sequence-method-next-number-on-save">
+		<call class="com.axelor.gst.web.SequenceController" method="setNextNumber" />
+	</action-method>
+
+</object-views>

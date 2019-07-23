@@ -61,11 +61,11 @@ public class SequenceServiceImpl implements SequenceService {
         nextNumber = nextNumber + "0";
       }
       nextNumber = nextNumber + numberString;
-      
+
       if (sequence.getSuffix() != null) {
         nextNumber = nextNumber + sequence.getSuffix();
       }
-      
+
       reference = nextNumber;
       sequence.setNextNumber(nextNumber);
       sequenceRepo.save(sequence);

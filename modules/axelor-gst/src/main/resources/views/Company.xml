@@ -12,14 +12,14 @@
 	<form name="company-form" title="Company" model="com.axelor.gst.db.Company">
 		<panel name="information-panel" title="Information" css="panel-red">
 			<panel colSpan="4">
-				<field name="logo" showTitle="false" colSpan="12" widget="image"/>
+				<field name="logo" showTitle="false" colSpan="12" widget="image" />
 			</panel>
 			<panel colSpan="8">
 				<field name="name" colSpan="12" />
 				<field name="gstIn" colSpan="12" />
 			</panel>
 		</panel>
-		
+
 		<panel name="contact-panel" title="Contact">
 			<field name="contactList">
 				<editor>
@@ -32,20 +32,19 @@
 				</editor>
 			</field>
 		</panel>
-		
+
 		<panel-related field="bankDetailsList" name="bank-details-list-panel"
 			title="Bank Details" form-view="bank-account-form">
-			<field name="bank"/>
-			<field name="accountNo"/>
-			<field name="ifsc"/>
-			<field name="type" selection="bankAccount.type.selection"/>
-			<field name="address"/>
+			<field name="bank" />
+			<field name="accountNo" />
+			<field name="ifsc" />
+			<field name="type" selection="bankAccount.type.selection" />
+			<field name="address" />
 		</panel-related>
-		
+
 		<panel name="address-panel" title="Address">
-			<field name="address" form-view="address-form" canNew="true"/>
+			<field name="address" form-view="address-form" canNew="true" />
 		</panel>
 	</form>
-	
 
 </object-views>

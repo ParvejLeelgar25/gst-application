@@ -3,41 +3,42 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://axelor.com/xml/ns/object-views
   http://axelor.com/xml/ns/object-views/object-views_5.0.xsd">
-	
+
 	<grid name="address-grid" title="Address" model="com.axelor.gst.db.Address">
 		<field name="line1" />
 		<field name="line2" />
 		<field name="pinCode" />
 	</grid>
-	
+
 	<form name="address-form" title="Address" model="com.axelor.gst.db.Address">
 		<panel name="info-panel" title="Address">
-			<field name="type" selection="address.type.selection"/>
-			<field name="line1"/>
-			<field name="line2"/>
-			<field name="pinCode"/>
+			<field name="type" selection="address.type.selection" />
+			<field name="line1" />
+			<field name="line2" />
+			<field name="pinCode" />
 		</panel>
-		
-		<panel name="city-state-country-panel" title="Other Information">
-			<field name="city" canNew="true" form-view="city-form" canEdit="false" widget="SuggestBox" onChange="action-address-record-city-on-change,action-address-attrs-city-on-change"/>
-			<field name="state" canNew="true" form-view="state-form" widget="SuggestBox" onChange="action-address-record-state-on-change"/>
-			<field name="country" canNew="true"  canEdit="false" form-view="country-form" widget="SuggestBox"/>	
-		</panel>	
-	</form>
-	
-	<action-record name="action-address-record-city-on-change" model="com.axelor.gst.db.Address">
-		<field name="state" expr="eval: city.getState()"/>
-		<field name="country" expr="eval: city.getCountry()"/>
-	</action-record>
-	
-	<action-record name="action-address-record-state-on-change" model="com.axelor.gst.db.Address">
-		<field name="country" expr="eval: state.getCountry()"/>
-	</action-record>
-	
-	<action-attrs name="action-address-attrs-city-on-change" model="com.axelor.gst.db.Address">
-		<attribute name="readonly" for="state" expr="" if="city.getState() != null"/>
-		<attribute name="readonly" for="country" expr=""/>
-	</action-attrs>
 
+		<panel name="city-state-country-panel" title="Other Information">
+			<field name="city" canNew="true" form-view="city-form" canEdit="false" widget="SuggestBox"
+				onChange="action-address-record-city-on-change,action-address-attrs-city-on-change" />
+			<field name="state" canNew="true" form-view="state-form" widget="SuggestBox" 
+				onChange="action-address-record-state-on-change" />
+			<field name="country" canNew="true" canEdit="false" form-view="country-form" widget="SuggestBox" />
+		</panel>
+	</form>
+
+	<action-record name="action-address-record-city-on-change" model="com.axelor.gst.db.Address">
+		<field name="state" expr="eval: city.getState()" />
+		<field name="country" expr="eval: city.getCountry()" />
+	</action-record>
+
+	<action-record name="action-address-record-state-on-change" model="com.axelor.gst.db.Address">
+		<field name="country" expr="eval: state.getCountry()" />
+	</action-record>
+
+	<action-attrs name="action-address-attrs-city-on-change" model="com.axelor.gst.db.Address">
+		<attribute name="readonly" for="state" expr="" if="city.getState() != null" />
+		<attribute name="readonly" for="country" expr="" />
+	</action-attrs>
 
 </object-views>

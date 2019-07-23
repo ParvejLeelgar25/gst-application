@@ -3,35 +3,36 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://axelor.com/xml/ns/object-views
   http://axelor.com/xml/ns/object-views/object-views_5.0.xsd">
-  
-  <grid name="invoice-line-grid" title="Invoice Line" model="com.axelor.gst.db.InvoiceLine">
-  	<field name="hsbn"/>
-  </grid>
-  
-  <form name="invoice-line-form" title="Invoice" model="com.axelor.gst.db.InvoiceLine">
-  	<panel name="invoice-line-panel" title="Invoice Line">
-  		<field name="product" canNew="true" form-view="product-form" widget="SuggestBox" onChange="action-invoice-line-record-product-on-change"/>
-  		<field name="hsbn"/>
-  		<field name="item"/>
-  		<field name="qty" onChange="action-invoice-line-method-qty-price-on-change"/>
-  		<field name="price" onChange="action-invoice-line-method-qty-price-on-change"/>
-  		<field name="netAmount"/>
-  		<field name="gstRate"/>
-  		<field name="igst"/>
-  		<field name="sgst"/>
-  		<field name="cgst"/>
-  		<field name="grossAmount"/>
-  	</panel>
-  </form>
-  
-  <action-method name="action-invoice-line-method-qty-price-on-change">
-  	<call class="com.axelor.gst.web.InvoiceLineController" method="calcNetAmount"/>
-  </action-method>
-  
-  <action-record name="action-invoice-line-record-product-on-change" model="com.axelor.gst.db.InvoiceLine">
-  	<field name="item" expr="eval: product.getName()"/>
-  	<field name="gstRate" expr="eval: product.getGstRate()"/>
-  </action-record>
 
-  
-  </object-views>
+	<grid name="invoice-line-grid" title="Invoice Line"
+		model="com.axelor.gst.db.InvoiceLine">
+		<field name="hsbn" />
+	</grid>
+
+	<form name="invoice-line-form" title="Invoice" model="com.axelor.gst.db.InvoiceLine">
+		<panel name="invoice-line-panel" title="Invoice Line">
+			<field name="product" canNew="true" form-view="product-form"
+				widget="SuggestBox" onChange="action-invoice-line-record-product-on-change" />
+			<field name="hsbn" />
+			<field name="item" />
+			<field name="qty" onChange="action-invoice-line-method-qty-price-on-change" />
+			<field name="price" onChange="action-invoice-line-method-qty-price-on-change" />
+			<field name="netAmount" />
+			<field name="gstRate" />
+			<field name="igst" />
+			<field name="sgst" />
+			<field name="cgst" />
+			<field name="grossAmount" />
+		</panel>
+	</form>
+
+	<action-method name="action-invoice-line-method-qty-price-on-change">
+		<call class="com.axelor.gst.web.InvoiceLineController" method="calcNetAmount" />
+	</action-method>
+
+	<action-record name="action-invoice-line-record-product-on-change" model="com.axelor.gst.db.InvoiceLine">
+		<field name="item" expr="eval: product.getName()" />
+		<field name="gstRate" expr="eval: product.getGstRate()" />
+	</action-record>
+
+</object-views>

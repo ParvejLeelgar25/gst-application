@@ -3,35 +3,35 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://axelor.com/xml/ns/object-views
   http://axelor.com/xml/ns/object-views/object-views_5.0.xsd">
-  
-  <selection name="address.type.selection">
+
+	<selection name="address.type.selection">
 		<option value="default">Default</option>
 		<option value="invoice">Invoice</option>
 		<option value="shipping">Shipping</option>
 		<option value="other">Other</option>
 	</selection>
-	
+
 	<selection name="contact.type.selection">
 		<option value="primary">Primary</option>
 		<option value="secondary">Secondary</option>
 		<option value="others">Others</option>
 	</selection>
-	
+
 	<selection name="bankAccount.type.selection">
 		<option value="current">Current</option>
 		<option value="saving">Saving</option>
 	</selection>
-	
+
 	<selection name="party.type.selection">
 		<option value="individual">Individual</option>
 		<option value="company">Company</option>
 	</selection>
-	
+
 	<selection name="invoice.status.selection">
 		<option value="draft">Draft</option>
 		<option value="validated">Validated</option>
 		<option value="paid">Paid</option>
 		<option value="cancelled">Cancelled</option>
 	</selection>
-  
-  </object-views>
+
+</object-views>

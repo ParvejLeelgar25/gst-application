@@ -5,11 +5,11 @@
   http://axelor.com/xml/ns/domain-models/domain-models_5.0.xsd">
 
 	<module name="gst" package="com.axelor.gst.db" />
+	
 	<entity name="State">
+	
 		<string name="name" required="true" unique="true" title="Name" />
-		<many-to-one name="country" ref="com.axelor.gst.db.Country" required="true" title="Country"/>
-		
-		<!-- <one-to-many name="cityList" ref="com.axelor.gst.db.City" mappedBy="state"/>
-		<one-to-many name="stateList" ref="com.axelor.gst.db.Address" mappedBy="state"/> -->
+		<many-to-one name="country" ref="com.axelor.gst.db.Country" required="true" title="Country" />
+	
 	</entity>
-	</domain-models>
+</domain-models>

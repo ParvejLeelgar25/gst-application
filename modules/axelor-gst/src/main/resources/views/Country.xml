@@ -3,19 +3,19 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://axelor.com/xml/ns/object-views
   http://axelor.com/xml/ns/object-views/object-views_5.0.xsd">
-  
-  <grid name="country-grid" title="Country" model="com.axelor.gst.db.Country">
+
+	<grid name="country-grid" title="Country" model="com.axelor.gst.db.Country">
 		<field name="name" />
 	</grid>
 
-	<form name="country-form" title="Country" model="com.axelor.gst.db.Country" onSave="action-country-method-name-on-save">
+	<form name="country-form" title="Country" model="com.axelor.gst.db.Country"	onSave="action-country-method-name-on-save">
 		<panel name="country-panel" title="Country">
-			<field name="name"/>
+			<field name="name" />
 		</panel>
 	</form>
-	
+
 	<action-method name="action-country-method-name-on-save" model="com.axelor.gst.db.Country">
-		<call class="com.axelor.gst.web.CountryController" method="upperCaseCountryName"/>
+		<call class="com.axelor.gst.web.CountryController" method="upperCaseCountryName" />
 	</action-method>
-  
-  </object-views>
+
+</object-views>

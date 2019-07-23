@@ -39,8 +39,8 @@ public class InvoiceServiceImpl implements InvoiceService {
           if (address.getType().equals("default") || address.getType().equals("invoice")) {
             defaultInvoiceAddress = address;
           }
-          if(address.getType().equals("default") || address.getType().equals("shipping")) {
-        	  defaultShippingAddress = address;
+          if (address.getType().equals("default") || address.getType().equals("shipping")) {
+            defaultShippingAddress = address;
           }
         }
       }

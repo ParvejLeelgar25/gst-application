@@ -12,12 +12,12 @@
 	<form name="state-form" title="State" model="com.axelor.gst.db.State" onSave="action-state-method-name-on-save">
 		<panel name="state-panel" title="State">
 			<field name="name" />
-			<field name="country" widget="SuggestBox" canNew="true" form-view="country-form"/>
+			<field name="country" widget="SuggestBox" canNew="true" form-view="country-form" />
 		</panel>
 	</form>
-	
+
 	<action-method name="action-state-method-name-on-save" model="com.axelor.gst.db.State">
-		<call class="com.axelor.gst.web.StateController" method="upperCaseStateName"/>
+		<call class="com.axelor.gst.web.StateController" method="upperCaseStateName" />
 	</action-method>
 
 </object-views>

@@ -7,12 +7,12 @@ import com.axelor.rpc.ActionResponse;
 import com.google.inject.Inject;
 
 public class SequenceController {
-	
-	@Inject private SequenceService service;
-	
-	public void setNextNumber(ActionRequest request, ActionResponse response) {
-		Sequence sequence = request.getContext().asType(Sequence.class);
-		service.setNextNumber(sequence);
-		response.setValue("nextNumber", sequence.getNextNumber());
-	}
+
+  @Inject private SequenceService service;
+
+  public void setNextNumber(ActionRequest request, ActionResponse response) {
+    Sequence sequence = request.getContext().asType(Sequence.class);
+    service.setNextNumber(sequence);
+    response.setValue("nextNumber", sequence.getNextNumber());
+  }
 }

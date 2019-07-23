@@ -5,18 +5,17 @@
   http://axelor.com/xml/ns/domain-models/domain-models_5.0.xsd">
 
 	<module name="gst" package="com.axelor.gst.db" />
-	
+
 	<entity name="Product">
-		<string name="name" required="true" title="Name"/>
-		<string name="code" required="true" title="Code"/>
-		<string name="hsbn" title="HSBN"/>
-		<decimal name="salePrice" title="Sale Price"/>
-		<decimal name="costPrice" title="Cost Price"/>
-		<decimal name="gstRate" title="GST Rate" />
-		<many-to-one name="image" ref="com.axelor.meta.db.MetaFile" title="Image"/>
-		<many-to-one name="productCategory" ref="com.axelor.gst.db.ProductCategory" title="Product Category"/>
-		
-		<!-- <one-to-many name="invoiceLineList" ref="com.axelor.gst.db.InvoiceLine" mappedBy="product"/> -->
-	</entity>
 	
-	</domain-models>
+		<string name="name" required="true" title="Name" />
+		<string name="code" required="true" title="Code" />
+		<string name="hsbn" title="HSBN" />
+		<decimal name="salePrice" title="Sale Price" />
+		<decimal name="costPrice" title="Cost Price" />
+		<decimal name="gstRate" title="GST Rate" />
+		<many-to-one name="image" ref="com.axelor.meta.db.MetaFile" title="Image" />
+		<many-to-one name="productCategory" ref="com.axelor.gst.db.ProductCategory" title="Product Category" />
+
+	</entity>
+</domain-models>

@@ -5,17 +5,17 @@
   http://axelor.com/xml/ns/domain-models/domain-models_5.0.xsd">
 
 	<module name="gst" package="com.axelor.gst.db" />
-	
+
 	<entity name="Party">
-		<string name="reference" readonly="true" title="Reference"/>
-		<string name="name" required="true" title="Name"/>
-		<string name="type" required="true" default="company" selection="party.type.selection" title="Type"/>
-		<boolean name="isCustomer" title="Customer"/>
-		<boolean name="isSupplier" title="Supplier"/>
-		<string name="gstIn" min="15" max="15" title="GST IN"/>
-		<one-to-many name="contactList" ref="com.axelor.gst.db.Contact" title="Contact"/>  <!-- mappedBy="party" -->
-		<one-to-many name="addressList" ref="com.axelor.gst.db.Address" title="Address"/>  <!-- mappedBy="party" -->
-		
-		<!-- <one-to-many name="invoiceList" ref="com.axelor.gst.db.Invoice" mappedBy="party"/> -->
+	
+		<string name="reference" readonly="true" title="Reference" />
+		<string name="name" required="true" title="Name" />
+		<string name="type" required="true" default="company" selection="party.type.selection" title="Type" />
+		<boolean name="isCustomer" title="Customer" />
+		<boolean name="isSupplier" title="Supplier" />
+		<string name="gstIn" min="15" max="15" title="GST IN" />
+		<one-to-many name="contactList" ref="com.axelor.gst.db.Contact" title="Contact" />
+		<one-to-many name="addressList" ref="com.axelor.gst.db.Address" title="Address" />
+
 	</entity>
-	</domain-models>
+</domain-models>
