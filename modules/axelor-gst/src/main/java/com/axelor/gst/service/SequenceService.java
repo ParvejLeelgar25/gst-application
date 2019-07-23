@@ -6,5 +6,5 @@ public interface SequenceService {
 	
 	public void setNextNumber(Sequence sequence);
 	
-	public String giveReference(String model);
+	public String getReference(String model);
 }

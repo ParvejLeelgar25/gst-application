@@ -12,7 +12,7 @@ public class PartyController {
 	public void getReference(ActionRequest request, ActionResponse response) {
 		
 		String model = request.getModel();
-		String reference = service.giveReference(model);
+		String reference = service.getReference(model);
 		response.setValue("reference",reference);
 	}
 }
