@@ -1,5 +1,7 @@
 package com.axelor.gst.web;
 
+import java.util.List;
+
 import com.axelor.gst.db.Country;
 import com.axelor.gst.db.Invoice;
 import com.axelor.gst.db.InvoiceLine;
@@ -42,8 +44,8 @@ public class InvoiceController {
   }
 
   public void getReference(ActionRequest request, ActionResponse response) {
-	
-	Invoice invoice = request.getContext().asType(Invoice.class);
+
+    Invoice invoice = request.getContext().asType(Invoice.class);
     String model = request.getModel();
     if (invoice.getReference() == null) {
       String reference = sequenceService.getReference(model);
