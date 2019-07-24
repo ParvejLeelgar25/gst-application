@@ -6,7 +6,7 @@
 
 	<grid name="invoice-line-grid" title="Invoice Line"
 		model="com.axelor.gst.db.InvoiceLine">
-		<field name="hsbn" />
+		<field name="item"/>
 	</grid>
 
 	<form name="invoice-line-form" title="Invoice" model="com.axelor.gst.db.InvoiceLine">
@@ -33,6 +33,7 @@
 	<action-record name="action-invoice-line-record-product-on-change" model="com.axelor.gst.db.InvoiceLine">
 		<field name="item" expr="eval: product.getName()" />
 		<field name="gstRate" expr="eval: product.getGstRate()" />
+		<field name="price" expr="eval: product.getSalePrice()"/>
 	</action-record>
 
 </object-views>

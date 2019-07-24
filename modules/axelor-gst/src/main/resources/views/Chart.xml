@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<object-views xmlns="http://axelor.com/xml/ns/object-views"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://axelor.com/xml/ns/object-views
+  http://axelor.com/xml/ns/object-views/object-views_5.0.xsd">
+	
+	<action-record name="action-method-gst-chart-set-date" model="com.axelor.gst.db.Invoice">
+		<field name="toDateTime" expr="eval: __date__.withDayOfMonth(1)"/>
+		<field name="fromDateTime" expr="eval:__date__"/>
+	</action-record>
+	
+	<chart name="chart.gst.unpaid.invoice.per.customer" title="Unpaid invoice per customer" 
+		onInit="action-method-gst-chart-set-date">
+		<search-fields>
+			<field type="date" name="toDateTime" title="To Date" />
+			<field type="date" name="fromDateTime" title="From Date"/>
+		</search-fields>
+		<dataset type="sql"> 
+  			<![CDATA[
+  				select count(gi.status) as invoices,gp.name as name from gst_invoice gi,gst_party gp 
+  				where gi.party=gp.id and gi.status in ('draft','validated') and gp.is_customer='t'
+  				and DATE(gi.datetime) between DATE(:toDateTime) and DATE(:fromDateTime)
+  				group by gp.name;
+  			]]>
+  		</dataset>
+		<category key="name"/>
+		<series key="invoices" type="bar" />
+	</chart>
+
+</object-views>

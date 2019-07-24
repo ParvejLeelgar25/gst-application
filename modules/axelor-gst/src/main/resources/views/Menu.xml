@@ -11,9 +11,8 @@
 	<menuitem title="Dashboard" name="gst-root-dashboard-dashboard"
 		parent="gst-root-dashboard" action="gst.root.dashboard.dashboard" />
 
-	<action-view name="gst.root.dashboard.dashboard" title="DashBoard"
-		model="">
-		<view type="" />
+	<action-view name="gst.root.dashboard.dashboard" title="DashBoard">
+		<view type="dashboard" name="welcome.dashboard"/>
 	</action-view>
 
 	<menuitem title="Party" name="gst-root-party" parent="gst-root" />
