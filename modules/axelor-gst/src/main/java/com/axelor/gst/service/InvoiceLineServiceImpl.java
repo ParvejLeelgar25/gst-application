@@ -29,7 +29,7 @@ public class InvoiceLineServiceImpl implements InvoiceLineService {
       grossAmount = netAmount.add(igst);
     } else {
       sgst = (netAmountPercent).divide(BigDecimal.valueOf(2));
-      cgst = (netAmountPercent).divide(BigDecimal.valueOf(2));
+      cgst = sgst;
       grossAmount = netAmount.add(sgst).add(cgst);
     }
     invoiceLine.setNetAmount(netAmount);

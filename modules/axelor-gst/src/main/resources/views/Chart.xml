@@ -46,4 +46,15 @@
 		<series key="itemcount" groupBy="itemname" type="bar" />
 	</chart>
 	
+	<chart name="chart.gst.customer.per.state" title="Customer Per State" >
+		<dataset type="sql"> 
+  			<![CDATA[
+  				select count(gp.is_customer) as customercount, gs.name as name from gst_party as gp, gst_address as ga, 
+  				gst_state as gs where is_customer='t' and ga.party = gp.id and ga.state = gs.id group by gs.name;
+  			]]>
+  		</dataset>
+		<category key="name"/>
+		<series key="customercount" type="pie" />
+	</chart>
+	
 </object-views>

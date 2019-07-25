@@ -15,7 +15,7 @@
 		<boolean name="isSupplier" title="Supplier" />
 		<string name="gstIn" min="15" max="15" title="GST IN" />
 		<one-to-many name="contactList" ref="com.axelor.gst.db.Contact" title="Contact" />
-		<one-to-many name="addressList" ref="com.axelor.gst.db.Address" title="Address" />
+		<one-to-many name="addressList" ref="com.axelor.gst.db.Address" title="Address" mappedBy="party"/>
 
 	</entity>
 </domain-models>
