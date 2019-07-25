@@ -3,17 +3,18 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://axelor.com/xml/ns/object-views
   http://axelor.com/xml/ns/object-views/object-views_5.0.xsd">
-	
-	<action-record name="action-method-gst-chart-set-date" model="com.axelor.gst.db.Invoice">
-		<field name="toDateTime" expr="eval: __date__.withDayOfMonth(1)"/>
-		<field name="fromDateTime" expr="eval:__date__"/>
+
+	<action-record name="action-method-gst-chart-set-date"
+		model="com.axelor.gst.db.Invoice">
+		<field name="toDateTime" expr="eval: __date__.withDayOfMonth(1)" />
+		<field name="fromDateTime" expr="eval:__date__" />
 	</action-record>
-	
-	<chart name="chart.gst.unpaid.invoice.per.customer" title="Unpaid invoice per customer" 
+
+	<chart name="chart.gst.unpaid.invoice.per.customer" title="Unpaid invoice per customer"
 		onInit="action-method-gst-chart-set-date">
 		<search-fields>
 			<field type="date" name="toDateTime" title="To Date" />
-			<field type="date" name="fromDateTime" title="From Date"/>
+			<field type="date" name="fromDateTime" title="From Date" />
 		</search-fields>
 		<dataset type="sql"> 
   			<![CDATA[
@@ -23,15 +24,15 @@
   				group by gp.name;
   			]]>
   		</dataset>
-		<category key="name"/>
+		<category key="name" />
 		<series key="invoices" type="bar" />
 	</chart>
-	
-	<chart name="chart.gst.paid.invoice.per.category.per.product" title="Paid invoice per category per product" 
-		onInit="action-method-gst-chart-set-date">
+
+	<chart name="chart.gst.paid.invoice.per.category.per.product"
+		title="Paid invoice per category per product" onInit="action-method-gst-chart-set-date">
 		<search-fields>
 			<field type="date" name="toDateTime" title="To Date" />
-			<field type="date" name="fromDateTime" title="From Date"/>
+			<field type="date" name="fromDateTime" title="From Date" />
 		</search-fields>
 		<dataset type="sql"> 
   			<![CDATA[
@@ -42,29 +43,49 @@
   				group by gil.item, gpc.name;
   			]]>
   		</dataset>
-		<category key="name"/>
+		<category key="name" />
 		<series key="itemcount" groupBy="itemname" type="bar" />
 	</chart>
-	
-	<chart name="chart.gst.customer.per.state" title="Customer Per State" >
+
+	<chart name="chart.gst.customer.per.state" title="Customer Per State">
 		<dataset type="sql"> 
   			<![CDATA[
   				select count(gp.is_customer) as customercount, gs.name as name from gst_party as gp, gst_address as ga, 
   				gst_state as gs where is_customer='t' and ga.party = gp.id and ga.state = gs.id group by gs.name;
   			]]>
   		</dataset>
-		<category key="name"/>
+		<category key="name" />
 		<series key="customercount" type="pie" />
 	</chart>
-	
-	<chart name="chart.gst.invoice.per.status.amount" title="Invoice Per Status">
+
+	<chart name="chart.gst.invoice.per.status.amount" title="Invoice Per Status Amount">
 		<dataset type="sql"> 
   			<![CDATA[
   				select sum(gi.gross_amount) as amount,gi.status as status from gst_invoice as gi group by gi.status;
   			]]>
   		</dataset>
-		<category key="status"/>
+		<category key="status" />
 		<series key="amount" type="bar" />
 	</chart>
-	
+
+	<chart name="chart.gst.invoice.per.status.number.of.invoice"
+		title="Invoice Per Status Number Of Invoice">
+		<dataset type="sql"> 
+  			<![CDATA[
+  				select count(gi.status) as statuscount,gi.status as status from gst_invoice as gi group by gi.status;
+  			]]>
+  		</dataset>
+		<category key="status" type="text" />
+		<series key="statuscount" groupBy="status" type="line" />
+	</chart>
+
+	<action-view name="older-invoice" title="Older Invoices"
+		model="com.axelor.gst.db.Invoice">
+		<view type="grid" name="invoice-grid" />
+		<domain>self.date &lt;= :_date and self.status in ('draft','validated')</domain>
+		<context name="_date" expr="eval: __datetime__.minusMonths(1)" />
+	</action-view>
+
+
 </object-views>
+
