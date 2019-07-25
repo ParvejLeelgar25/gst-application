@@ -26,5 +26,24 @@
 		<category key="name"/>
 		<series key="invoices" type="bar" />
 	</chart>
-
+	
+	<chart name="chart.gst.paid.invoice.per.category.per.product" title="Paid invoice per category per product" 
+		onInit="action-method-gst-chart-set-date">
+		<search-fields>
+			<field type="date" name="toDateTime" title="To Date" />
+			<field type="date" name="fromDateTime" title="From Date"/>
+		</search-fields>
+		<dataset type="sql"> 
+  			<![CDATA[
+  				select count(gil.item) as itemcount, gil.item as itemname, gpc.name as name from gst_invoice_line as gil, 
+  				gst_invoice as gi, gst_product_category as gpc ,gst_product as gp
+  				where gi.status  = 'paid' and gil.invoice = gi.id and gil.product = gp.id and gp.product_category = gpc.id
+  				and DATE(gi.datetime) between DATE(:toDateTime) and DATE(:fromDateTime)
+  				group by gil.item, gpc.name;
+  			]]>
+  		</dataset>
+		<category key="name"/>
+		<series key="itemcount" groupBy="itemname" type="bar" />
+	</chart>
+	
 </object-views>

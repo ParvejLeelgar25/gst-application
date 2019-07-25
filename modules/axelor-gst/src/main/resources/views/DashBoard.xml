@@ -6,6 +6,7 @@
 
 	<dashboard name="welcome.dashboard" title="Welcome!">
 		<dashlet action="chart:chart.gst.unpaid.invoice.per.customer" colSpan="4" />
+		<dashlet action="chart:chart.gst.paid.invoice.per.category.per.product" colSpan="12" />
 	</dashboard>
 
 </object-views>

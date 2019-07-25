@@ -15,11 +15,18 @@ public class InvoiceLineController {
 
     InvoiceLine invoiceLine = request.getContext().asType(InvoiceLine.class);
     Invoice invoice = request.getContext().getParent().asType(Invoice.class);
-    service.calcNetAmount(invoiceLine, invoice);
-    response.setValue("netAmount", invoiceLine.getNetAmount());
-    response.setValue("igst", invoiceLine.getIgst());
-    response.setValue("sgst", invoiceLine.getSgst());
-    response.setValue("cgst", invoiceLine.getCgst());
-    response.setValue("grossAmount", invoiceLine.getGrossAmount());
+    if(invoice.getParty() != null && invoice.getInvoiceAddress() != null) {
+    	service.calcNetAmount(invoiceLine, invoice);
+    	response.setValue("netAmount", invoiceLine.getNetAmount());
+        response.setValue("igst", invoiceLine.getIgst());
+        response.setValue("sgst", invoiceLine.getSgst());
+        response.setValue("cgst", invoiceLine.getCgst());
+        response.setValue("grossAmount", invoiceLine.getGrossAmount());
+    }
+    else {
+    	response.setError("Please fill Party and Invoice Address Field");
+    }
+    
+    
   }
 }

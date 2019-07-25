@@ -36,7 +36,7 @@
 			<field name="grossAmount" />
 			
 			<panel name="invoice-item-panel" title="Invoice Item" colSpan="12">
-				<field name="invoiceItems" form-view="invoice-line-form" 
+				<field name="invoiceItems" form-view="invoice-line-form"  
 					onChange="action-invoice-method-invoice-item-on-change" colSpan="12"/>
 			</panel>
 		</panel>

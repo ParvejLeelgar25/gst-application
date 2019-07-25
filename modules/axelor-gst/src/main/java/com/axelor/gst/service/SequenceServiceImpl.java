@@ -33,7 +33,7 @@ public class SequenceServiceImpl implements SequenceService {
     String modelArray[] = model.split("\\.");
     String modelName = modelArray[modelArray.length - 1];
     MetaModel metaModel = metaModelRepo.findByName(modelName);
-    Sequence sequence = sequenceRepo.all().filter("self.model= ?1", metaModel.getId()).fetchOne();
+    Sequence sequence = sequenceRepo.all().filter("self.model = ?1", metaModel).fetchOne();
 
     String reference = null;
 

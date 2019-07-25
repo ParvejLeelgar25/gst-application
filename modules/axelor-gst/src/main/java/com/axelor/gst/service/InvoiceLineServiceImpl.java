@@ -16,7 +16,7 @@ public class InvoiceLineServiceImpl implements InvoiceLineService {
     BigDecimal sgst = BigDecimal.ZERO;
     BigDecimal cgst = BigDecimal.ZERO;
     BigDecimal netAmountPercent = BigDecimal.ZERO;
-    
+
     netAmount = invoiceLine.getPrice().multiply(BigDecimal.valueOf(invoiceLine.getQty()));
     netAmountPercent =
         (netAmount.multiply(invoiceLine.getGstRate())).divide(BigDecimal.valueOf(100));
