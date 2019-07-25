@@ -50,7 +50,7 @@ public class InvoiceController {
     if (invoice.getReference() == null) {
       String reference = sequenceService.getReference(model);
       if (reference == null) {
-        response.setError("Generate Sequence");
+        response.setError("Please Configure Sequence For Invoice");
       } else {
         response.setValue("reference", reference);
       }

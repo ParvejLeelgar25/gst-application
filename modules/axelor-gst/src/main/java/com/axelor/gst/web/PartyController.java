@@ -17,7 +17,7 @@ public class PartyController {
     if (party.getReference() == null) {
       String reference = service.getReference(model);
       if (reference == null) {
-        response.setError("Generate Sequence");
+        response.setError("Please Configure Sequence For Party");
       } else {
         response.setValue("reference", reference);
       }

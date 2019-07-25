@@ -7,6 +7,15 @@
 	<grid name="invoice-line-grid" title="Invoice Line"
 		model="com.axelor.gst.db.InvoiceLine">
 		<field name="item"/>
+		<field name="hsbn"/>
+		<field name="qty"/>
+		<field name="price"/>
+		<field name="netAmount" />
+		<field name="gstRate" />
+		<field name="igst" />
+		<field name="sgst" />
+		<field name="cgst" />
+		<field name="grossAmount" />
 	</grid>
 
 	<form name="invoice-line-form" title="Invoice" model="com.axelor.gst.db.InvoiceLine">
