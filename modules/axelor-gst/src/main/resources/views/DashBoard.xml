@@ -8,6 +8,7 @@
 		<dashlet action="chart:chart.gst.unpaid.invoice.per.customer" colSpan="4" />
 		<dashlet action="chart:chart.gst.paid.invoice.per.category.per.product" colSpan="4" />
 		<dashlet action="chart:chart.gst.customer.per.state" colSpan="4"/>
+		<dashlet action="chart:chart.gst.invoice.per.status.amount" colSpan="4"/>
 	</dashboard>
 
 </object-views>
