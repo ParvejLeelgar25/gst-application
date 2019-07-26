@@ -7,7 +7,7 @@
 	<grid name="product-grid" title="Product" model="com.axelor.gst.db.Product">
 
 		<toolbar>
-			<button name="createInvoice" icon="fa-print" onClick="" title="Create Invoice" />
+			<button name="createInvoice" icon="fa-print" onClick="action-product-method-button-create-invoice-on-click,action-product-view-button-create-invoice-on-click" title="Create Invoice" />
 			<button name="print" icon="fa-print" onClick="action-product-method-button-print-on-click,action-product-report-button-print-on-click" title="Report" />
 		</toolbar>
 
@@ -49,6 +49,19 @@
 	<action-method name="action-product-method-button-print-on-click">
 		<call class="com.axelor.gst.web.ProductController" method="report"/>
 	</action-method>
+	
+	<action-method name="action-product-method-button-create-invoice-on-click">
+		<call class="com.axelor.gst.web.ProductController" method="createInvoice"/>
+	</action-method>
+	
+	<action-view name="action-product-view-button-create-invoice-on-click" title="Party" model="com.axelor.gst.db.Wizard">
+		<view type="form" name="wizard-form"/>
+		<view-param name="popup" value="true"/>
+		<view-param name="show-toolbar" value="false"/>
+ 	  	<view-param name="show-confirm" value="false"/>
+ 	  	<view-param name="popup-save" value="false"/>
+		<context name="productIds" expr="eval: productId"/>
+	</action-view>
 
 	<cards name="product-cards" title="Product" model="com.axelor.gst.db.Product">
 		<field name="name" />
@@ -76,5 +89,6 @@
 			</div>
 		]]></template>
 	</cards>
+	
 
 </object-views>

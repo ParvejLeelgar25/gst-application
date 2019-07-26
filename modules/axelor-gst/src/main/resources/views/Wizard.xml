@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<object-views xmlns="http://axelor.com/xml/ns/object-views"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://axelor.com/xml/ns/object-views
+  http://axelor.com/xml/ns/object-views/object-views_5.0.xsd">
+
+	<grid name="wizard-grid" title="Wizard" model="com.axelor.gst.db.Wizard">
+		<field name="party" />
+	</grid>
+
+	<form name="wizard-form" title="Wizard" model="com.axelor.gst.db.Wizard">
+		<panel name="wizard-panel" title="Wizard">
+			<field name="party" widget="SuggestBox"/>
+			<button name="createi" onClick="com.axelor.gst.web.ProductController:setInvoiceData" title="Generate Invoice"/>
+		</panel>
+	</form>
+	
+</object-views>

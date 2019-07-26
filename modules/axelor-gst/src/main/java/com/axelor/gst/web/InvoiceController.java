@@ -1,12 +1,17 @@
 package com.axelor.gst.web;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.axelor.gst.db.Country;
 import com.axelor.gst.db.Invoice;
 import com.axelor.gst.db.InvoiceLine;
+import com.axelor.gst.db.Party;
+import com.axelor.gst.db.Wizard;
 import com.axelor.gst.service.InvoiceService;
 import com.axelor.gst.service.SequenceService;
+import com.axelor.meta.db.MetaModel;
+import com.axelor.meta.schema.actions.ActionView;
 import com.axelor.rpc.ActionRequest;
 import com.axelor.rpc.ActionResponse;
 import com.google.inject.Inject;
@@ -57,3 +62,14 @@ public class InvoiceController {
     }
   }
 }
+
+/*
+    public void selectId(ActionRequest request, ActionResponse response) { @SuppressWarnings("unchecked")
+    List<Integer> selectedProductIds = (List<Integer>) request.getContext().getOrDefault("_ids", new ArrayList<Integer>());
+    List<InvoiceLine> invoiceItems = new ArrayList<InvoiceLine>();
+    if (!selectedProductIds.isEmpty())
+    { invoiceItems = productService.getInvoiceItems(selectedProductIds);
+    response.setView( ActionView.define("Invoice") .model(Invoice.class.getName()) .add("form", "invoice-form") .context("invoiceItems", invoiceItems) .map()); }
+    else { response.setNotify("Select Product to Create Invoice"); } }
+    }
+  }*/

@@ -9,9 +9,12 @@ import com.axelor.gst.db.Contact;
 import com.axelor.gst.db.Invoice;
 import com.axelor.gst.db.InvoiceLine;
 import com.axelor.gst.db.Party;
+import com.axelor.gst.db.Wizard;
+import com.axelor.gst.db.repo.WizardRepository;
+import com.google.inject.Inject;
 
 public class InvoiceServiceImpl implements InvoiceService {
-
+	
   @Override
   public void setPartyData(Invoice invoice) {
 
