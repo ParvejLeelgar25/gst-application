@@ -10,7 +10,7 @@
 	</grid>
 
 	<form name="invoice-form" title="Invoice" model="com.axelor.gst.db.Invoice"
-		onNew="action-invoice-record-company-on-new,action-invoice-attrs-draft-on-new">
+		onNew="action-invoice-record-company-on-new,action-invoice-attrs-draft-on-new,com.axelor.gst.web.InvoiceController:setInvoiceData">
 		<toolbar>
 			<button name="print" icon="fa-print" title="Report" 
 				onClick="action-invoice-report-button-print-on-click"/>	
@@ -18,7 +18,7 @@
 		
 		<panel name="invoice-panel" itemSpan="6">
 			<field name="status" selection="invoice.status.selection" widget="NavSelect" />
-			<field name="company" canNew="true" widget="SuggestBox" />
+			<field name="company" canNew="true" widget="SuggestBox"/>
 			<field name="reference"/>
 			<field name="date" />
 			<field name="priority" />

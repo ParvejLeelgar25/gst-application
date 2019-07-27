@@ -11,7 +11,7 @@
 	<form name="wizard-form" title="Wizard" model="com.axelor.gst.db.Wizard">
 		<panel name="wizard-panel" title="Wizard">
 			<field name="party" widget="SuggestBox"/>
-			<button name="createi" onClick="com.axelor.gst.web.ProductController:setInvoiceData" title="Generate Invoice"/>
+			<button name="btnGenerateInvoice" onClick="com.axelor.gst.web.ProductController:invoiceView" title="Generate Invoice"/>
 		</panel>
 	</form>
 	

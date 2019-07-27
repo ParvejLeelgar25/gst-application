@@ -7,7 +7,7 @@
 	<grid name="product-grid" title="Product" model="com.axelor.gst.db.Product">
 
 		<toolbar>
-			<button name="createInvoice" icon="fa-print" onClick="action-product-method-button-create-invoice-on-click,action-product-view-button-create-invoice-on-click" title="Create Invoice" />
+			<button name="createInvoice" icon="fa-print" onClick="action-product-view-button-create-invoice-on-click" title="Create Invoice" />
 			<button name="print" icon="fa-print" onClick="action-product-method-button-print-on-click,action-product-report-button-print-on-click" title="Report" />
 		</toolbar>
 
@@ -60,7 +60,7 @@
 		<view-param name="show-toolbar" value="false"/>
  	  	<view-param name="show-confirm" value="false"/>
  	  	<view-param name="popup-save" value="false"/>
-		<context name="productIds" expr="eval: productId"/>
+		<context name="productIds" expr="eval: _ids"/>
 	</action-view>
 
 	<cards name="product-cards" title="Product" model="com.axelor.gst.db.Product">

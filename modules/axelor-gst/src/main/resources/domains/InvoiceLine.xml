@@ -11,7 +11,7 @@
 		<many-to-one name="product" ref="com.axelor.gst.db.Product" title="Product" />
 		<string name="hsbn" title="HSBN" />
 		<string name="item" required="true" title="Item" />
-		<integer name="qty" title="Quantity" />
+		<integer name="qty" default="1" title="Quantity" />
 		<decimal name="price" default="1" title="Price" />
 		<decimal name="netAmount" readonly="true" title="Net Amount" />
 		<decimal name="gstRate" readonly="true" title="GST Rate" />

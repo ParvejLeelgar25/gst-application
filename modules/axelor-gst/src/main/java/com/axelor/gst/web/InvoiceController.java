@@ -61,15 +61,14 @@ public class InvoiceController {
       }
     }
   }
-}
 
-/*
-    public void selectId(ActionRequest request, ActionResponse response) { @SuppressWarnings("unchecked")
-    List<Integer> selectedProductIds = (List<Integer>) request.getContext().getOrDefault("_ids", new ArrayList<Integer>());
-    List<InvoiceLine> invoiceItems = new ArrayList<InvoiceLine>();
-    if (!selectedProductIds.isEmpty())
-    { invoiceItems = productService.getInvoiceItems(selectedProductIds);
-    response.setView( ActionView.define("Invoice") .model(Invoice.class.getName()) .add("form", "invoice-form") .context("invoiceItems", invoiceItems) .map()); }
-    else { response.setNotify("Select Product to Create Invoice"); } }
+  public void setInvoiceData(ActionRequest request, ActionResponse response) {
+    Invoice invoice = request.getContext().asType(Invoice.class);
+    if (request.getContext().get("product_ids") != null || request.getContext().get("party_id") != null) {
+      List<Integer> productIdList = (List<Integer>) request.getContext().get("product_ids");
+      int partyId = (int) request.getContext().get("party_id");
+      Invoice invoiceObject = service.setInvoiceData(invoice, productIdList, partyId);
+      response.setValues(invoiceObject);
     }
-  }*/
+  }
+}

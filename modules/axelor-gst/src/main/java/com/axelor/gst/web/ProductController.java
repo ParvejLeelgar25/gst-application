@@ -15,8 +15,8 @@ import com.axelor.rpc.ActionResponse;
 import com.google.inject.Inject;
 
 public class ProductController {
-	
-	@Inject ProductService service;
+
+  @Inject ProductService service;
 
   public void report(ActionRequest request, ActionResponse response) {
 
@@ -30,24 +30,22 @@ public class ProductController {
     }
   }
 
-  public void createInvoice(ActionRequest request, ActionResponse response) {
+  public void invoiceView(ActionRequest request, ActionResponse response) {
 
     List<Integer> ids;
-    if ((ids = (List) request.getContext().get("_ids")) == null) {
+    if ((ids = (List) request.getContext().get("productIds")) == null) {
       throw new IllegalArgumentException("Please Select Atleast One Record");
     } else {
-      String ids_str = ids.toString();
-      String productId = ids_str.substring(1, ids_str.length() - 1);
-      request.getContext().put("productId", productId);
+    	Party party = (Party) request.getContext().get("party");
+    	Long partyId = party.getId();
+    	request.getContext().put("partyId", partyId);
+    	response.setView(
+    	          ActionView.define("Invoice")
+    	              .model(Invoice.class.getName())
+    	              .add("form", "invoice-form")
+    	              .context("product_ids", request.getContext().get("productIds"))
+    	              .context("party_id", request.getContext().get("partyId"))
+    	              .map());
     }
-  }
-
-  public void setInvoiceData(ActionRequest request, ActionResponse response) {
-
-    String productIds = (String) request.getContext().get("productIds");
-    Party party = (Party) request.getContext().get("party");
-    
-    
-    
   }
 }

@@ -9,12 +9,18 @@ import com.axelor.gst.db.Contact;
 import com.axelor.gst.db.Invoice;
 import com.axelor.gst.db.InvoiceLine;
 import com.axelor.gst.db.Party;
+import com.axelor.gst.db.Product;
 import com.axelor.gst.db.Wizard;
+import com.axelor.gst.db.repo.PartyRepository;
+import com.axelor.gst.db.repo.ProductRepository;
 import com.axelor.gst.db.repo.WizardRepository;
+import com.axelor.inject.Beans;
 import com.google.inject.Inject;
 
 public class InvoiceServiceImpl implements InvoiceService {
-	
+
+  @Inject InvoiceLineServiceImpl invoiceLineServiceImpl;
+
   @Override
   public void setPartyData(Invoice invoice) {
 
@@ -100,5 +106,29 @@ public class InvoiceServiceImpl implements InvoiceService {
     invoice.setNetCgst(cgst);
     invoice.setNetSgst(sgst);
     invoice.setGrossAmount(grossAmount);
+  }
+
+  @Override
+  public Invoice setInvoiceData(Invoice invoice, List<Integer> productIdList, int partyId) {
+    Party party = Beans.get(PartyRepository.class).all().filter("self.id = ?1", partyId).fetchOne();
+    invoice.setParty(party);
+    setPartyData(invoice);
+
+    List<InvoiceLine> invoiceItem = new ArrayList<>();
+    for (Integer productId : productIdList) {
+      Product product =
+          Beans.get(ProductRepository.class).all().filter("self.id = ?1", productId).fetchOne();
+      InvoiceLine invoiceLine = new InvoiceLine();
+      invoiceLine.setProduct(product);
+      invoiceLine.setItem(product.getName());
+      invoiceLine.setHsbn(product.getHsbn());
+      invoiceLine.setGstRate(product.getGstRate());
+      invoiceLine.setPrice(product.getSalePrice());
+      invoiceLineServiceImpl.calcNetAmount(invoiceLine, invoice);
+      invoiceItem.add(invoiceLine);
+    }
+    invoice.setInvoiceItems(invoiceItem);
+    setDetails(invoice);
+    return invoice;
   }
 }
