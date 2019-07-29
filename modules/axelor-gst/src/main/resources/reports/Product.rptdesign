@@ -20,6 +20,17 @@
                 <property name="category">Unformatted</property>
             </structure>
         </scalar-parameter>
+        <scalar-parameter name="imagePath" id="130">
+            <property name="valueType">static</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
     </parameters>
     <data-sources>
         <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="JDBC Data Source" id="32">
@@ -208,12 +219,6 @@ ON gp.image = mf.id where gp.id = any (string_to_array(?, ',')::int[]); ]]></xml
             <property name="dataSet">Image Data Set</property>
             <list-property name="boundDataColumns">
                 <structure>
-                    <property name="name">file_name</property>
-                    <text-property name="displayName">file_name</text-property>
-                    <expression name="expression" type="javascript">dataSetRow["file_name"]</expression>
-                    <property name="dataType">string</property>
-                </structure>
-                <structure>
                     <property name="name">code</property>
                     <text-property name="displayName">code</text-property>
                     <expression name="expression" type="javascript">dataSetRow["code"]</expression>
@@ -243,6 +248,12 @@ ON gp.image = mf.id where gp.id = any (string_to_array(?, ',')::int[]); ]]></xml
                     <expression name="expression" type="javascript">dataSetRow["cost_price"]</expression>
                     <property name="dataType">decimal</property>
                 </structure>
+                <structure>
+                    <property name="name">file_name</property>
+                    <text-property name="displayName">file_name</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["file_name"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
             </list-property>
             <property name="pageBreakInterval">1</property>
             <column id="104">
@@ -266,7 +277,7 @@ vars["file_path"] = this.getRowData().getColumnValue("file_path");]]></method>
                         <image id="105">
                             <property name="width">0.9583333333333334in</property>
                             <property name="source">file</property>
-                            <expression name="uri" type="javascript">"file:///home/axelor/.axelor/attachments/"+ row["file_name"]</expression>
+                            <expression name="uri" type="javascript">params["imagePath"].value + "/" + row["file_name"]</expression>
                         </image>
                     </cell>
                     <cell id="107">

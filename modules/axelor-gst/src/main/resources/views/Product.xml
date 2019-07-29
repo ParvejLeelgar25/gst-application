@@ -29,14 +29,10 @@
 			<field name="salePrice" />
 			<field name="costPrice" />
 			<field name="productCategory" form-view="product-category-form" canNew="true"
-				onChange="action-product-attrs-product-category-on-change,action-product-record-product-category-on-change" />
-			<field name="gstRate" />
+				onChange="action-product-record-product-category-on-change" />
+			<field name="gstRate" readonlyIf="productCategory != null"/>
 		</panel>
 	</form>
-
-	<action-attrs name="action-product-attrs-product-category-on-change" model="com.axelor.gst.db.Product">
-		<attribute name="readonly" for="gstRate" expr="" />
-	</action-attrs>
 
 	<action-record name="action-product-record-product-category-on-change" model="com.axelor.gst.db.Product">
 		<field name="gstRate" expr="eval: productCategory.getGstRate()" />
@@ -44,6 +40,7 @@
 	
 	<action-report name="action-product-report-button-print-on-click" design="Product.rptdesign" output="Product" format="pdf">
 		<param name="productId" expr="eval: productId"/>
+		<param name="imagePath" expr="eval: imagePath"/>
 	</action-report>
 	
 	<action-method name="action-product-method-button-print-on-click">
@@ -54,7 +51,7 @@
 		<call class="com.axelor.gst.web.ProductController" method="createInvoice"/>
 	</action-method>
 	
-	<action-view name="action-product-view-button-create-invoice-on-click" title="Party" model="com.axelor.gst.db.Wizard">
+	<action-view name="action-product-view-button-create-invoice-on-click" title="Party" model="com.axelor.gst.db.Wizard" >
 		<view type="form" name="wizard-form"/>
 		<view-param name="popup" value="true"/>
 		<view-param name="show-toolbar" value="false"/>
