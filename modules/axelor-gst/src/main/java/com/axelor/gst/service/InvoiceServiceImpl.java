@@ -21,7 +21,7 @@ import com.google.inject.Inject;
 
 public class InvoiceServiceImpl implements InvoiceService {
 
-  @Inject InvoiceLineServiceImpl invoiceLineServiceImpl;
+ @Inject InvoiceLineService invoiceLineService;
 
   @Override
   public void setPartyData(Invoice invoice) {
@@ -126,7 +126,7 @@ public class InvoiceServiceImpl implements InvoiceService {
       invoiceLine.setHsbn(product.getHsbn());
       invoiceLine.setGstRate(product.getGstRate());
       invoiceLine.setPrice(product.getSalePrice());
-      invoiceLineServiceImpl.calcNetAmount(invoiceLine, invoice);
+      invoiceLineService.calcNetAmount(invoiceLine, invoice);
       invoiceItem.add(invoiceLine);
     }
     invoice.setInvoiceItems(invoiceItem);
@@ -135,48 +135,16 @@ public class InvoiceServiceImpl implements InvoiceService {
   }
   
   @Override
-  public Invoice reCalculation(Invoice invoice) {
-	  
-	  List<InvoiceLine> invoiceLineList = new ArrayList<>();
-	  if(invoice.getInvoiceItems() != null) {
-		  invoiceLineList = invoice.getInvoiceItems();
-		  List<InvoiceLine> newInvoiceLineList = new ArrayList<>();
-		  for(InvoiceLine invoiceLine : invoiceLineList) {
-			  	BigDecimal netAmount = BigDecimal.ZERO;
-			    BigDecimal grossAmount = BigDecimal.ZERO;
-			    BigDecimal igst = BigDecimal.ZERO;
-			    BigDecimal sgst = BigDecimal.ZERO;
-			    BigDecimal cgst = BigDecimal.ZERO;
-			    BigDecimal netAmountPercent = BigDecimal.ZERO;
-			     
-			    netAmount = invoiceLine.getPrice().multiply(BigDecimal.valueOf(invoiceLine.getQty()));
-			    netAmountPercent =
-			        (netAmount.multiply(invoiceLine.getGstRate())).divide(BigDecimal.valueOf(100));
-			    if (!(invoice
-			        .getCompany()
-			        .getAddress()
-			        .getState()
-			        .equals(invoice.getInvoiceAddress().getState()))) {
-			      igst = netAmountPercent;
-			      grossAmount = netAmount.add(igst);
-			    } else {
-			      sgst = (netAmountPercent).divide(BigDecimal.valueOf(2));
-			      cgst = sgst;
-			      grossAmount = netAmount.add(sgst).add(cgst);
-			    }
-
-			    invoiceLine.setNetAmount(netAmount);
-			    invoiceLine.setIgst(igst);
-			    invoiceLine.setSgst(sgst);
-			    invoiceLine.setCgst(cgst);
-			    invoiceLine.setGrossAmount(grossAmount);
-			    newInvoiceLineList.add(invoiceLine);
-		  }
-
-		  invoice.setInvoiceItems(newInvoiceLineList);
+  public void reCalculation(Invoice invoice) {
+	  List<InvoiceLine> invoiceLineListNew = new ArrayList<>();
+	 if(invoice.getInvoiceItems() != null) {
+		 for(int i=0; i<invoice.getInvoiceItems().size(); i++) {
+			 InvoiceLine invoiceLineNew = invoice.getInvoiceItems().get(i);
+			 invoiceLineService.calcNetAmount(invoiceLineNew,invoice);
+			 invoiceLineListNew.add(invoiceLineNew); 
+		 }
+		 invoice.setInvoiceItems(invoiceLineListNew);
 		  setDetails(invoice);
-	  }
-	  
-	  return invoice;
+	 }
   }
 }

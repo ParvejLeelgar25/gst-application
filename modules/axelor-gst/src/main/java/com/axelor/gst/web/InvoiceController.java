@@ -78,8 +78,8 @@ public class InvoiceController {
 	  
 	  Invoice invoice = request.getContext().asType(Invoice.class);
 	  if(invoice.getCompany() != null && invoice.getParty() != null && invoice.getInvoiceAddress() != null) {
-		  Invoice invoiceObject = service.reCalculation(invoice);
-		  response.setValue("invoiceItems", invoiceObject.getInvoiceItems());
+		  service.reCalculation(invoice);
+		  response.setValue("invoiceItems", invoice.getInvoiceItems());
 		  response.setValue("netAmount", invoice.getNetAmount());
 		  response.setValue("netIgst", invoice.getNetIgst());
 		  response.setValue("netSgst", invoice.getNetSgst());
