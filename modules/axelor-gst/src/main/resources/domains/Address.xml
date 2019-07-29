@@ -16,7 +16,5 @@
 		<many-to-one name="country" ref="com.axelor.gst.db.Country" required="true" title="Country" />
 		<string name="pinCode" title="Pin Code" />
 		
-		<many-to-one name="party" ref="com.axelor.gst.db.Party" title="Party"/>
-
 	</entity>
 </domain-models>
