@@ -25,7 +25,7 @@
 			<field name="party" canNew="true" form-view="party-form" widget="SuggestBox" 
 				onChange="action-invoice-method-party-on-change,com.axelor.gst.web.InvoiceController:reCalculation" />
 			<field name="partyContact" widget="SuggestBox" />
-			<field name="invoiceAddress" widget="SuggestBox" />
+			<field name="invoiceAddress" widget="SuggestBox" domain="self.party =:party"/>
 			<field name="shippingAddress" widget="SuggestBox" hideIf="isUseInvoiceAddressAsShipping == true" />
 			<field name="isUseInvoiceAddressAsShipping"
 				onChange="action-invoice-method-isUseInvoiceAddressAsShipping-on-change" />
