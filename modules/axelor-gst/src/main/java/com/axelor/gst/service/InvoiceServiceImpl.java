@@ -11,6 +11,8 @@ import com.axelor.gst.db.InvoiceLine;
 import com.axelor.gst.db.Party;
 import com.axelor.gst.db.Product;
 import com.axelor.gst.db.Wizard;
+import com.axelor.gst.db.repo.InvoiceLineRepository;
+import com.axelor.gst.db.repo.InvoiceRepository;
 import com.axelor.gst.db.repo.PartyRepository;
 import com.axelor.gst.db.repo.ProductRepository;
 import com.axelor.gst.db.repo.WizardRepository;
@@ -130,5 +132,51 @@ public class InvoiceServiceImpl implements InvoiceService {
     invoice.setInvoiceItems(invoiceItem);
     setDetails(invoice);
     return invoice;
+  }
+  
+  @Override
+  public Invoice reCalculation(Invoice invoice) {
+	  
+	  List<InvoiceLine> invoiceLineList = new ArrayList<>();
+	  if(invoice.getInvoiceItems() != null) {
+		  invoiceLineList = invoice.getInvoiceItems();
+		  List<InvoiceLine> newInvoiceLineList = new ArrayList<>();
+		  for(InvoiceLine invoiceLine : invoiceLineList) {
+			  	BigDecimal netAmount = BigDecimal.ZERO;
+			    BigDecimal grossAmount = BigDecimal.ZERO;
+			    BigDecimal igst = BigDecimal.ZERO;
+			    BigDecimal sgst = BigDecimal.ZERO;
+			    BigDecimal cgst = BigDecimal.ZERO;
+			    BigDecimal netAmountPercent = BigDecimal.ZERO;
+			     
+			    netAmount = invoiceLine.getPrice().multiply(BigDecimal.valueOf(invoiceLine.getQty()));
+			    netAmountPercent =
+			        (netAmount.multiply(invoiceLine.getGstRate())).divide(BigDecimal.valueOf(100));
+			    if (!(invoice
+			        .getCompany()
+			        .getAddress()
+			        .getState()
+			        .equals(invoice.getInvoiceAddress().getState()))) {
+			      igst = netAmountPercent;
+			      grossAmount = netAmount.add(igst);
+			    } else {
+			      sgst = (netAmountPercent).divide(BigDecimal.valueOf(2));
+			      cgst = sgst;
+			      grossAmount = netAmount.add(sgst).add(cgst);
+			    }
+
+			    invoiceLine.setNetAmount(netAmount);
+			    invoiceLine.setIgst(igst);
+			    invoiceLine.setSgst(sgst);
+			    invoiceLine.setCgst(cgst);
+			    invoiceLine.setGrossAmount(grossAmount);
+			    newInvoiceLineList.add(invoiceLine);
+		  }
+
+		  invoice.setInvoiceItems(newInvoiceLineList);
+		  setDetails(invoice);
+	  }
+	  
+	  return invoice;
   }
 }

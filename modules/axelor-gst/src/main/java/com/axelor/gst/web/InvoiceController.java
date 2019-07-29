@@ -1,5 +1,6 @@
 package com.axelor.gst.web;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,6 +11,7 @@ import com.axelor.gst.db.Party;
 import com.axelor.gst.db.Wizard;
 import com.axelor.gst.service.InvoiceService;
 import com.axelor.gst.service.SequenceService;
+import com.axelor.inject.Beans;
 import com.axelor.meta.db.MetaModel;
 import com.axelor.meta.schema.actions.ActionView;
 import com.axelor.rpc.ActionRequest;
@@ -70,5 +72,22 @@ public class InvoiceController {
       Invoice invoiceObject = service.setInvoiceData(invoice, productIdList, partyId);
       response.setValues(invoiceObject);
     }
+  }
+  
+  public void reCalculation(ActionRequest request, ActionResponse response) {
+	  
+	  Invoice invoice = request.getContext().asType(Invoice.class);
+	  if(invoice.getCompany() != null && invoice.getParty() != null && invoice.getInvoiceAddress() != null) {
+		  Invoice invoiceObject = service.reCalculation(invoice);
+		  response.setValue("invoiceItems", invoiceObject.getInvoiceItems());
+		  response.setValue("netAmount", invoice.getNetAmount());
+		  response.setValue("netIgst", invoice.getNetIgst());
+		  response.setValue("netSgst", invoice.getNetSgst());
+		  response.setValue("netCgst", invoice.getNetCgst());
+		  response.setValue("grossAmount", invoice.getGrossAmount());
+	  }
+	  else {
+		  response.setError("Please fill Company, Party and Invoice Address field");
+	  }
   }
 }

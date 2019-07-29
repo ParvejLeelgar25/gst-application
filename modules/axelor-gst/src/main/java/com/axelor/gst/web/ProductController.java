@@ -7,7 +7,6 @@ import com.axelor.gst.db.Invoice;
 import com.axelor.gst.db.InvoiceLine;
 import com.axelor.gst.db.Party;
 import com.axelor.gst.db.Wizard;
-import com.axelor.gst.service.ProductService;
 import com.axelor.meta.schema.actions.ActionView;
 import com.axelor.meta.schema.actions.ActionView.ActionViewBuilder;
 import com.axelor.rpc.ActionRequest;
@@ -16,7 +15,7 @@ import com.google.inject.Inject;
 
 public class ProductController {
 
-  @Inject ProductService service;
+  
 
   public void report(ActionRequest request, ActionResponse response) {
 
@@ -47,5 +46,6 @@ public class ProductController {
     	              .context("party_id", request.getContext().get("partyId"))
     	              .map());
     }
+    response.setCanClose(true);
   }
 }
