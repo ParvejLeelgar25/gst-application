@@ -13,8 +13,9 @@ public class PartyController {
   public void getReference(ActionRequest request, ActionResponse response) {
 
     Party party = request.getContext().asType(Party.class);
-    String model = request.getModel();
+    
     if (party.getReference() == null) {
+      String model = request.getModel();
       String reference = service.getReference(model);
       if (reference == null) {
         response.setError("Please Configure Sequence For Party");

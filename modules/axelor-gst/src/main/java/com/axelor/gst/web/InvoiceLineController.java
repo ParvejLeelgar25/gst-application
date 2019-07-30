@@ -26,7 +26,5 @@ public class InvoiceLineController {
     else {
     	response.setError("Please fill Party, Invoice Address and Company Field");
     }
-    
-    
   }
 }

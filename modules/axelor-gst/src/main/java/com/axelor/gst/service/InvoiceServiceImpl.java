@@ -122,7 +122,7 @@ public class InvoiceServiceImpl implements InvoiceService {
           Beans.get(ProductRepository.class).all().filter("self.id = ?1", productId).fetchOne();
       InvoiceLine invoiceLine = new InvoiceLine();
       invoiceLine.setProduct(product);
-      invoiceLine.setItem(product.getName());
+      invoiceLine.setItem("[" + product.getCode() + "]" + product.getName());
       invoiceLine.setHsbn(product.getHsbn());
       invoiceLine.setGstRate(product.getGstRate());
       invoiceLine.setPrice(product.getSalePrice());

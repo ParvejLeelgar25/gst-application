@@ -40,9 +40,9 @@
 	</action-method>
 
 	<action-record name="action-invoice-line-record-product-on-change" model="com.axelor.gst.db.InvoiceLine">
-		<field name="item" expr="eval: product.getName()" />
-		<field name="gstRate" expr="eval: product.getGstRate()" />
-		<field name="price" expr="eval: product.getSalePrice()"/>
+		<field name="item" expr="eval: '[' + product.code + ']' + product.getName()" if="product != null"/>
+		<field name="gstRate" expr="eval: product.getGstRate()" if="product != null"/>
+		<field name="price" expr="eval: product.getSalePrice()" if="product != null"/>
 	</action-record>
 
 </object-views>

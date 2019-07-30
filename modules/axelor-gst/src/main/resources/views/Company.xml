@@ -21,7 +21,7 @@
 		</panel>
 
 		<panel name="contact-panel" title="Contact">
-			<field name="contactList">
+			<field name="contactList" >
 				<editor>
 					<field name="name" />
 					<field name="type" selection="contact.type.selection" />

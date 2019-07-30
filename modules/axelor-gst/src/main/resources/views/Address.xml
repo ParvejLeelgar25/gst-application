@@ -11,7 +11,7 @@
 	</grid>
 
 	<form name="address-form" title="Address" model="com.axelor.gst.db.Address">
-		<panel name="info-panel" title="Address">
+		<panel name="info-panel" title="Address" >
 			<field name="type" selection="address.type.selection" />
 			<field name="line1" />
 			<field name="line2" />

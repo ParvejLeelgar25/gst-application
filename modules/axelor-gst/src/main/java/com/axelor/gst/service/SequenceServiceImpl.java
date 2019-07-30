@@ -42,6 +42,7 @@ public class SequenceServiceImpl implements SequenceService {
       int prefixLength = sequence.getPrefix().length();
       int nextNumberLength = sequence.getNextNumber().length();
       int suffixLength = 0;
+      reference = sequence.getNextNumber();
 
       if (sequence.getSuffix() != null) {
         suffixLength = sequence.getSuffix().length();
@@ -65,7 +66,6 @@ public class SequenceServiceImpl implements SequenceService {
         nextNumber = nextNumber + sequence.getSuffix();
       }
 
-      reference = nextNumber;
       sequence.setNextNumber(nextNumber);
       sequenceRepo.save(sequence);
     }

@@ -26,15 +26,13 @@ public class ProductController {
       String productId = ids_str.substring(1, ids_str.length() - 1);
       request.getContext().put("productId", productId);
       String imagePath = AppSettings.get().getPath("file.upload.dir", "file.upload.dir");
-      System.out.println(imagePath);
       request.getContext().put("imagePath", imagePath);
     }
   }
 
   public void invoiceView(ActionRequest request, ActionResponse response) {
 
-    List<Integer> ids;
-    if ((ids = (List) request.getContext().get("productIds")) == null) {
+    if (request.getContext().get("productIds") == null) {
       throw new IllegalArgumentException("Please Select Atleast One Record");
     } else {
       if (request.getContext().get("party") != null) {
