@@ -53,18 +53,14 @@ public class InvoiceController {
   public void getReference(ActionRequest request, ActionResponse response) {
 
     Invoice invoice = request.getContext().asType(Invoice.class);
-    if (invoice.getParty() != null && invoice.getInvoiceAddress() != null) {
-      String model = request.getModel();
-      if (invoice.getReference() == null) {
-        String reference = sequenceService.getReference(model);
-        if (reference == null) {
-          response.setError("Please Configure Sequence For Invoice");
-        } else {
-          response.setValue("reference", reference);
-        }
+    String model = request.getModel();
+    if (invoice.getReference() == null) {
+      String reference = sequenceService.getReference(model);
+      if (reference == null) {
+        response.setError("Please Configure Sequence For Invoice");
+      } else {
+        response.setValue("reference", reference);
       }
-    } else {
-    	response.setError("Please Fill Required Field");
     }
   }
 

@@ -21,11 +21,11 @@
 	<form name="invoice-line-form" title="Invoice" model="com.axelor.gst.db.InvoiceLine">
 		<panel name="invoice-line-panel" title="Invoice Line">
 			<field name="product" canNew="true" form-view="product-form"
-				widget="SuggestBox" onChange="action-invoice-line-method-product-on-change" />
+				widget="SuggestBox" onChange="action-invoice-line-method-product-on-change,action-invoice-line-method-qty-price-product-on-change" />
 			<field name="hsbn" />
 			<field name="item" />
-			<field name="qty" onChange="action-invoice-line-method-qty-price-on-change" />
-			<field name="price" onChange="action-invoice-line-method-qty-price-on-change" />
+			<field name="qty" onChange="action-invoice-line-method-qty-price-product-on-change" />
+			<field name="price" onChange="action-invoice-line-method-qty-price-product-on-change" />
 			<field name="netAmount" />
 			<field name="gstRate" />
 			<field name="igst" />
@@ -35,7 +35,7 @@
 		</panel>
 	</form>
 
-	<action-method name="action-invoice-line-method-qty-price-on-change">
+	<action-method name="action-invoice-line-method-qty-price-product-on-change">
 		<call class="com.axelor.gst.web.InvoiceLineController" method="calcNetAmount" />
 	</action-method>
 	

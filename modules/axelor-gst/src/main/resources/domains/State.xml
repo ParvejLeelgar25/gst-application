@@ -8,8 +8,8 @@
 	
 	<entity name="State">
 	
-		<string name="name" required="true" unique="true" title="Name" />
-		<many-to-one name="country" ref="com.axelor.gst.db.Country" required="true" title="Country" />
+		<string name="name" required="true" unique="true" title="Name"/>
+		<many-to-one name="country" ref="com.axelor.gst.db.Country" required="true" title="Country"/>
 	
 	</entity>
 </domain-models>

@@ -13,7 +13,7 @@
 		onNew="action-invoice-record-company-on-new,action-invoice-attrs-draft-on-new,com.axelor.gst.web.InvoiceController:setInvoiceData">
 		<toolbar>
 			<button name="print" icon="fa-print" title="Report" 
-				onClick="action-invoice-report-button-print-on-click"/>	
+				onClick="save,action-invoice-report-button-print-on-click" hideIf="status == 'draft'"/>	
 		</toolbar>
 		
 		<panel name="invoice-panel" itemSpan="6">
@@ -23,9 +23,9 @@
 			<field name="date" />
 			<field name="priority" />
 			<field name="party" canNew="true" form-view="party-form" widget="SuggestBox" 
-				onChange="action-invoice-method-party-on-change,com.axelor.gst.web.InvoiceController:reCalculation" />
+				onChange="action-invoice-method-party-on-change,com.axelor.gst.web.InvoiceController:reCalculation" onSelect="action-invoice-attrs-is-individual-domain"/>
 			<field name="partyContact" widget="SuggestBox" />
-			<field name="invoiceAddress" widget="SuggestBox" />
+			<field name="invoiceAddress" widget="SuggestBox" onSelect="action-invoice-attrs-invoice-address"/>
 			<field name="shippingAddress" widget="SuggestBox" hideIf="isUseInvoiceAddressAsShipping == true" />
 			<field name="isUseInvoiceAddressAsShipping"
 				onChange="action-invoice-method-isUseInvoiceAddressAsShipping-on-change" />
@@ -45,7 +45,7 @@
 			<button name="draft" title="Draft"
 				onClick="action-invoice-attrs-draft-on-new" hidden="true" showIf="status == 'cancelled'"/>
 			<button name="validate" title="Validate"
-				onClick="action-invoice-method-button-validate-on-click,action-invoice-validate-on-click,save" hidden="true" showIf="status=='draft'" />
+				onClick="save,action-invoice-method-button-validate-on-click,action-invoice-validate-on-click,save" hidden="true" showIf="status=='draft'" />
 			<button name="paid" title="Paid" onClick="action-invoice-paid-on-click"
 				hidden="true" showIf="status=='validated'" hideIf="status=='draft'" />
 			<button name="cancel" title="Cancel" onClick="action-invoice-cancel-on-click"
@@ -91,8 +91,12 @@
 		<call class="com.axelor.gst.web.InvoiceController" method="getReference" />
 	</action-method>
 	
+	<action-attrs name="action-invoice-attrs-is-individual-domain">
+		<attribute name="domain" for="party" expr="eval: &quot;self.type = 'individual'&quot;"/>
+	</action-attrs>
+		
 	<action-report name="action-invoice-report-button-print-on-click" design="Invoice.rptdesign" output="Invoice" format="pdf">
-		<param name="id" expr="eval: id"/>
+		<param name="id" expr="eval: id" />
 	</action-report>
 
 	<kanban name="invoice-kanban" sequenceBy="priority"
