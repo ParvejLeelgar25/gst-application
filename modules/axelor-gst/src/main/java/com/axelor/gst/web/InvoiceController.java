@@ -71,7 +71,7 @@ public class InvoiceController {
   public void setInvoiceData(ActionRequest request, ActionResponse response) {
     Invoice invoice = request.getContext().asType(Invoice.class);
     if (request.getContext().get("product_ids") != null
-        || request.getContext().get("party_id") != null) {
+        && request.getContext().get("party_id") != null) {
       List<Integer> productIdList = (List<Integer>) request.getContext().get("product_ids");
       int partyId = (int) request.getContext().get("party_id");
       Invoice invoiceObject = service.setInvoiceData(invoice, productIdList, partyId);

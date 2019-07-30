@@ -138,10 +138,11 @@ public class InvoiceServiceImpl implements InvoiceService {
   public void reCalculation(Invoice invoice) {
 	  List<InvoiceLine> invoiceLineListNew = new ArrayList<>();
 	 if(invoice.getInvoiceItems() != null) {
-		 for(int i=0; i<invoice.getInvoiceItems().size(); i++) {
-			 InvoiceLine invoiceLineNew = invoice.getInvoiceItems().get(i);
-			 invoiceLineService.calcNetAmount(invoiceLineNew,invoice);
-			 invoiceLineListNew.add(invoiceLineNew); 
+
+		 for(InvoiceLine invoiceLine : invoice.getInvoiceItems()) {
+			 InvoiceLine invoiceLineObject = invoiceLine;
+			 invoiceLineService.calcNetAmount(invoiceLineObject,invoice);
+			 invoiceLineListNew.add(invoiceLineObject); 
 		 }
 		 invoice.setInvoiceItems(invoiceLineListNew);
 		  setDetails(invoice);

@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 
 import com.axelor.gst.db.Invoice;
 import com.axelor.gst.db.InvoiceLine;
+import com.axelor.gst.db.Product;
 
 public class InvoiceLineServiceImpl implements InvoiceLineService {
 
@@ -37,5 +38,20 @@ public class InvoiceLineServiceImpl implements InvoiceLineService {
     invoiceLine.setSgst(sgst);
     invoiceLine.setCgst(cgst);
     invoiceLine.setGrossAmount(grossAmount);
+  }
+
+  @Override
+  public void setProductDetails(InvoiceLine invoiceLine, Invoice invoice) {
+
+    if (invoiceLine.getProduct() != null) {
+      Product product = invoiceLine.getProduct();
+      invoiceLine.setGstRate(product.getGstRate());
+      invoiceLine.setItem("[" + product.getCode() + "]" + product.getName());
+      invoiceLine.setPrice(product.getSalePrice());
+    } else {
+      invoiceLine.setGstRate(null);
+      invoiceLine.setItem(null);
+      invoiceLine.setPrice(null);
+    }
   }
 }

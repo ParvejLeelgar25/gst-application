@@ -6,4 +6,6 @@ import com.axelor.gst.db.InvoiceLine;
 public interface InvoiceLineService {
 
   public void calcNetAmount(InvoiceLine invoiceLine, Invoice invoice);
+  
+  public void setProductDetails(InvoiceLine invoiceLine, Invoice invoice);
 }
