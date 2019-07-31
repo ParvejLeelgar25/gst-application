@@ -189,8 +189,8 @@
                 </structure>
             </list-property>
             <xml-property name="queryText"><![CDATA[select mf.file_name, gp.code, gp.name, gp.hsbn, gp.sale_price, gp.cost_price 
-from meta_file as mf 
-INNER JOIN gst_product as gp 
+from gst_product as gp
+LEFT JOIN meta_file as mf 
 ON gp.image = mf.id where gp.id = any (string_to_array(?, ',')::int[]); ]]></xml-property>
         </oda-data-set>
     </data-sets>
@@ -276,6 +276,13 @@ vars["file_path"] = this.getRowData().getColumnValue("file_path");]]></method>
                     <cell id="100">
                         <image id="105">
                             <property name="width">0.9583333333333334in</property>
+                            <list-property name="visibility">
+                                <structure>
+                                    <property name="format">all</property>
+                                    <expression name="valueExpr" type="javascript">if(row["file_name"] == null)
+true</expression>
+                                </structure>
+                            </list-property>
                             <property name="source">file</property>
                             <expression name="uri" type="javascript">params["imagePath"].value + "/" + row["file_name"]</expression>
                         </image>

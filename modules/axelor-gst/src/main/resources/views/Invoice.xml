@@ -14,7 +14,7 @@
 		onNew="action-invoice-record-company-on-new,action-invoice-attrs-draft-on-new,com.axelor.gst.web.InvoiceController:setInvoiceData">
 		<toolbar>
 			<button name="print" icon="fa-print" title="Report" 
-				onClick="save,action-invoice-report-button-print-on-click" hideIf="status == 'draft'"/>	
+				onClick="save,action-invoice-method-button-print-on-click,action-invoice-report-button-print-on-click" hideIf="status == 'draft'"/>	
 		</toolbar>
 		
 		<panel name="invoice-panel" itemSpan="6">
@@ -95,11 +95,16 @@
 	<action-attrs name="action-invoice-attrs-is-individual-domain">
 		<attribute name="domain" for="party" expr="eval: &quot;self.type = 'individual'&quot;"/>
 	</action-attrs>
+	
+	<action-method name="action-invoice-method-button-print-on-click">
+		<call class="com.axelor.gst.web.InvoiceController" method="getImagePath"/>
+	</action-method>
 		
 	<action-report name="action-invoice-report-button-print-on-click" design="Invoice.rptdesign" output="Invoice" format="pdf">
 		<param name="id" expr="eval: id" />
+		<param name="imagePath" expr="eval: imagePath"/>
 	</action-report>
-
+	
 	<kanban name="invoice-kanban" sequenceBy="priority"
 		model="com.axelor.gst.db.Invoice" columnBy="status" title="Invoice">
 		<field name="company" />

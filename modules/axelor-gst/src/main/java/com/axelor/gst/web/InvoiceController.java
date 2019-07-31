@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.axelor.app.AppSettings;
 import com.axelor.gst.db.Country;
 import com.axelor.gst.db.Invoice;
 import com.axelor.gst.db.InvoiceLine;
@@ -91,5 +92,10 @@ public class InvoiceController {
     } else {
       response.setError("Please fill Company, Party and Invoice Address field");
     }
+  }
+  
+  public void getImagePath(ActionRequest request, ActionResponse response) {
+	  String imagePath = AppSettings.get().getPath("file.upload.dir", "file.upload.dir");
+      request.getContext().put("imagePath", imagePath);
   }
 }
