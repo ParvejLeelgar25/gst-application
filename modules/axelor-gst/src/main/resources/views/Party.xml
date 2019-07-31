@@ -7,9 +7,10 @@
 	<grid name="party-grid" title="Party" model="com.axelor.gst.db.Party">
 		<field name="name" />
 		<field name="gstIn" />
+		<field name="reference"/>
 	</grid>
 
-	<form name="party-form" title="Party" model="com.axelor.gst.db.Party" onSave="action-party-method-reference-on-save">
+	<form name="party-form" title="Party" model="com.axelor.gst.db.Party" >
 		<panel name="party-panel" title="Party">
 			<field name="reference" />
 			<field name="name" />
@@ -62,10 +63,6 @@
 	<action-attrs name="action-party-attrs-city-on-change" model="com.axelor.gst.db.Party">
 		<attribute name="readonly" for="country" expr="" />
 	</action-attrs>
-
-	<action-method name="action-party-method-reference-on-save">
-		<call class="com.axelor.gst.web.PartyController" method="getReference" />
-	</action-method>
 
 	<cards name="party-cards" title="Party" model="com.axelor.gst.db.Party">
 		<field name="reference" />

@@ -7,6 +7,7 @@
 	<grid name="invoice-grid" title="Invoice" model="com.axelor.gst.db.Invoice">
 		<field name="status" />
 		<field name="reference" />
+		<field name="party"/>
 	</grid>
 
 	<form name="invoice-form" title="Invoice" model="com.axelor.gst.db.Invoice"
@@ -23,7 +24,7 @@
 			<field name="date" />
 			<field name="priority" />
 			<field name="party" canNew="true" form-view="party-form" widget="SuggestBox" 
-				onChange="action-invoice-method-party-on-change,com.axelor.gst.web.InvoiceController:reCalculation" onSelect="action-invoice-attrs-is-individual-domain"/>
+				onChange="action-invoice-method-party-on-change,com.axelor.gst.web.InvoiceController:reCalculation" />
 			<field name="partyContact" widget="SuggestBox" />
 			<field name="invoiceAddress" widget="SuggestBox" onSelect="action-invoice-attrs-invoice-address"/>
 			<field name="shippingAddress" widget="SuggestBox" hideIf="isUseInvoiceAddressAsShipping == true" />

@@ -140,9 +140,8 @@ public class InvoiceServiceImpl implements InvoiceService {
 	 if(invoice.getInvoiceItems() != null) {
 
 		 for(InvoiceLine invoiceLine : invoice.getInvoiceItems()) {
-			 InvoiceLine invoiceLineObject = invoiceLine;
-			 invoiceLineService.calcNetAmount(invoiceLineObject,invoice);
-			 invoiceLineListNew.add(invoiceLineObject); 
+			 invoiceLineService.calcNetAmount(invoiceLine,invoice);
+			 invoiceLineListNew.add(invoiceLine); 
 		 }
 		 invoice.setInvoiceItems(invoiceLineListNew);
 		  setDetails(invoice);

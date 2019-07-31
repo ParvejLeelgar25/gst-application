@@ -6,6 +6,7 @@ import com.axelor.gst.db.repo.PartyManageRepository;
 import com.axelor.gst.db.repo.PartyRepository;
 import com.axelor.gst.db.repo.ProductManageRepository;
 import com.axelor.gst.db.repo.ProductRepository;
+import com.axelor.gst.db.repo.SequenceRepository;
 import com.axelor.gst.service.CityService;
 import com.axelor.gst.service.CityServiceImpl;
 import com.axelor.gst.service.CountryService;
@@ -30,6 +31,6 @@ public class AxelorGstModule extends AxelorModule {
     bind(CountryService.class).to(CountryServiceImpl.class);
     bind(SequenceService.class).to(SequenceServiceImpl.class);
     bind(ProductRepository.class).to(ProductManageRepository.class);
-    bind(PartyRepository.class).to(PartyManageRepository.class);
+    bind(PartyRepository.class).to(PartyManageRepository.class); 
   }
 }
