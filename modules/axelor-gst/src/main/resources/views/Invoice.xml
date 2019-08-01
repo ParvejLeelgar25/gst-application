@@ -26,7 +26,7 @@
 			<field name="party" canNew="true" form-view="party-form" widget="SuggestBox" 
 				onChange="action-invoice-method-party-on-change,com.axelor.gst.web.InvoiceController:reCalculation" />
 			<field name="partyContact" widget="SuggestBox" />
-			<field name="invoiceAddress" widget="SuggestBox" onSelect="action-invoice-attrs-invoice-address"/>
+			<field name="invoiceAddress" widget="SuggestBox" onChange="com.axelor.gst.web.InvoiceController:reCalculation"/>
 			<field name="shippingAddress" widget="SuggestBox" hideIf="isUseInvoiceAddressAsShipping == true" />
 			<field name="isUseInvoiceAddressAsShipping"
 				onChange="action-invoice-method-isUseInvoiceAddressAsShipping-on-change" />
@@ -106,7 +106,7 @@
 	</action-report>
 	
 	<kanban name="invoice-kanban" sequenceBy="priority"
-		model="com.axelor.gst.db.Invoice" columnBy="status" title="Invoice">
+		model="com.axelor.gst.db.Invoice" columnBy="status" title="Invoice" >
 		<field name="company" />
 		<field name="party" />
 		<field name="date" />

@@ -53,6 +53,7 @@
 	</action-record>
 
 	<action-record name="action-party-record-city-on-change" model="com.axelor.gst.db.Party">
+		<field name="state" expr="eval: city.getState()"/>
 		<field name="country" expr="eval: city.getCountry()" />
 	</action-record>
 
@@ -61,6 +62,7 @@
 	</action-attrs>
 
 	<action-attrs name="action-party-attrs-city-on-change" model="com.axelor.gst.db.Party">
+		<attribute name="readonly" for="state" expr=""/>
 		<attribute name="readonly" for="country" expr="" />
 	</action-attrs>
 

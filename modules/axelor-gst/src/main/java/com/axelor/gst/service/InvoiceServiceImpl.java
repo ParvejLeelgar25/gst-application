@@ -21,7 +21,7 @@ import com.google.inject.Inject;
 
 public class InvoiceServiceImpl implements InvoiceService {
 
- @Inject InvoiceLineService invoiceLineService;
+  @Inject InvoiceLineService invoiceLineService;
 
   @Override
   public void setPartyData(Invoice invoice) {
@@ -115,36 +115,38 @@ public class InvoiceServiceImpl implements InvoiceService {
     Party party = Beans.get(PartyRepository.class).all().filter("self.id = ?1", partyId).fetchOne();
     invoice.setParty(party);
     setPartyData(invoice);
-
-    List<InvoiceLine> invoiceItem = new ArrayList<>();
-    for (Integer productId : productIdList) {
-      Product product =
-          Beans.get(ProductRepository.class).all().filter("self.id = ?1", productId).fetchOne();
-      InvoiceLine invoiceLine = new InvoiceLine();
-      invoiceLine.setProduct(product);
-      invoiceLine.setItem("[" + product.getCode() + "]" + product.getName());
-      invoiceLine.setHsbn(product.getHsbn());
-      invoiceLine.setGstRate(product.getGstRate());
-      invoiceLine.setPrice(product.getSalePrice());
-      invoiceLineService.calcNetAmount(invoiceLine, invoice);
-      invoiceItem.add(invoiceLine);
+    if (invoice.getInvoiceAddress().getState() != null) { 
+      List<InvoiceLine> invoiceItem = new ArrayList<>();
+      for (Integer productId : productIdList) {
+        Product product =
+            Beans.get(ProductRepository.class).all().filter("self.id = ?1", productId).fetchOne();
+        InvoiceLine invoiceLine = new InvoiceLine();
+        invoiceLine.setProduct(product);
+        invoiceLine.setItem("[" + product.getCode() + "]" + product.getName());
+        invoiceLine.setHsbn(product.getHsbn());
+        invoiceLine.setGstRate(product.getGstRate());
+        invoiceLine.setPrice(product.getSalePrice());
+        invoiceLineService.calcNetAmount(invoiceLine, invoice);
+        invoiceItem.add(invoiceLine);
+      }
+      invoice.setInvoiceItems(invoiceItem);
+      setDetails(invoice);
     }
-    invoice.setInvoiceItems(invoiceItem);
-    setDetails(invoice);
+
     return invoice;
   }
-  
+
   @Override
   public void reCalculation(Invoice invoice) {
-	  List<InvoiceLine> invoiceLineListNew = new ArrayList<>();
-	 if(invoice.getInvoiceItems() != null) {
+    List<InvoiceLine> invoiceLineListNew = new ArrayList<>();
+    if (invoice.getInvoiceItems() != null) {
 
-		 for(InvoiceLine invoiceLine : invoice.getInvoiceItems()) {
-			 invoiceLineService.calcNetAmount(invoiceLine,invoice);
-			 invoiceLineListNew.add(invoiceLine); 
-		 }
-		 invoice.setInvoiceItems(invoiceLineListNew);
-		  setDetails(invoice);
-	 }
+      for (InvoiceLine invoiceLine : invoice.getInvoiceItems()) {
+        invoiceLineService.calcNetAmount(invoiceLine, invoice);
+        invoiceLineListNew.add(invoiceLine);
+      }
+      invoice.setInvoiceItems(invoiceLineListNew);
+      setDetails(invoice);
+    }
   }
 }

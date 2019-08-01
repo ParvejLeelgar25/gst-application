@@ -67,12 +67,23 @@ public class InvoiceController {
 
   public void setInvoiceData(ActionRequest request, ActionResponse response) {
     Invoice invoice = request.getContext().asType(Invoice.class);
+    System.out.println(request.getContext().asType(Invoice.class));
     if (request.getContext().get("product_ids") != null
         && request.getContext().get("party_id") != null) {
       List<Integer> productIdList = (List<Integer>) request.getContext().get("product_ids");
       int partyId = (int) request.getContext().get("party_id");
       Invoice invoiceObject = service.setInvoiceData(invoice, productIdList, partyId);
-      response.setValues(invoiceObject);
+      if (invoiceObject.getInvoiceItems() != null) {
+        response.setValues(invoiceObject);
+      } else {
+        if (invoiceObject.getCompany().getAddress().getState() == null) {
+          response.setError("Please fill state of Company");
+        } else {
+          if (invoiceObject.getInvoiceAddress().getState() == null) {
+            response.setError("Please fill state of Party address");
+          }
+        }
+      }
     }
   }
 
@@ -82,20 +93,35 @@ public class InvoiceController {
     if (invoice.getCompany() != null
         && invoice.getParty() != null
         && invoice.getInvoiceAddress() != null) {
-      service.reCalculation(invoice);
-      response.setValue("invoiceItems", invoice.getInvoiceItems());
-      response.setValue("netAmount", invoice.getNetAmount());
-      response.setValue("netIgst", invoice.getNetIgst());
-      response.setValue("netSgst", invoice.getNetSgst());
-      response.setValue("netCgst", invoice.getNetCgst());
-      response.setValue("grossAmount", invoice.getGrossAmount());
+      if (invoice.getCompany().getAddress() != null) {
+        if (invoice.getCompany().getAddress().getState() != null) {
+          if (invoice.getInvoiceAddress().getState() != null) {
+            service.reCalculation(invoice);
+            response.setValue("invoiceItems", invoice.getInvoiceItems());
+            response.setValue("netAmount", invoice.getNetAmount());
+            response.setValue("netIgst", invoice.getNetIgst());
+            response.setValue("netSgst", invoice.getNetSgst());
+            response.setValue("netCgst", invoice.getNetCgst());
+            response.setValue("grossAmount", invoice.getGrossAmount());
+          } else {
+            response.setError("Please fill state of Invoice Address");
+          }
+
+        } else {
+          response.setError("Please fill state of Company");
+        }
+
+      } else {
+        response.setError("Please fill address of Company");
+      }
+
     } else {
-      response.setError("Please fill Company, Party and Invoice Address field");
+      response.setError("Please fill Required field");
     }
   }
-  
+
   public void getImagePath(ActionRequest request, ActionResponse response) {
-	  String imagePath = AppSettings.get().getPath("file.upload.dir", "file.upload.dir");
-      request.getContext().put("imagePath", imagePath);
+    String imagePath = AppSettings.get().getPath("file.upload.dir", "file.upload.dir");
+    request.getContext().put("imagePath", imagePath);
   }
 }

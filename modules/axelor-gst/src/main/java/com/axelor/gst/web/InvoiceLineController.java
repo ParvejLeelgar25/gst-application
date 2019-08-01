@@ -15,17 +15,33 @@ public class InvoiceLineController {
 
     InvoiceLine invoiceLine = request.getContext().asType(InvoiceLine.class);
     Invoice invoice = request.getContext().getParent().asType(Invoice.class);
-    if (invoice.getParty() != null
-        && invoice.getInvoiceAddress() != null
-        && invoice.getCompany() != null) {
-      service.calcNetAmount(invoiceLine, invoice);
-      response.setValue("netAmount", invoiceLine.getNetAmount());
-      response.setValue("igst", invoiceLine.getIgst());
-      response.setValue("sgst", invoiceLine.getSgst());
-      response.setValue("cgst", invoiceLine.getCgst());
-      response.setValue("grossAmount", invoiceLine.getGrossAmount());
+
+    if (invoice.getCompany() != null
+        && invoice.getParty() != null
+        && invoice.getInvoiceAddress() != null) {
+      if (invoice.getCompany().getAddress() != null) {
+        if (invoice.getCompany().getAddress().getState() != null) {
+          if (invoice.getInvoiceAddress().getState() != null) {
+            service.calcNetAmount(invoiceLine, invoice);
+            response.setValue("netAmount", invoiceLine.getNetAmount());
+            response.setValue("igst", invoiceLine.getIgst());
+            response.setValue("sgst", invoiceLine.getSgst());
+            response.setValue("cgst", invoiceLine.getCgst());
+            response.setValue("grossAmount", invoiceLine.getGrossAmount());
+          } else {
+            response.setError("Please fill state of Invoice Address");
+          }
+
+        } else {
+          response.setError("Please fill state of Company");
+        }
+
+      } else {
+        response.setError("Please fill address of Company");
+      }
+
     } else {
-      response.setError("Please fill Party, Invoice Address and Company Field");
+      response.setError("Please fill Required field");
     }
   }
 
@@ -41,7 +57,7 @@ public class InvoiceLineController {
       response.setValue("price", invoiceLine.getPrice());
 
     } else {
-      response.setError("Please fill Party, Invoice Address and Company Field");
+      response.setError("Please fill Required Field of Invoice");
     }
   }
 }

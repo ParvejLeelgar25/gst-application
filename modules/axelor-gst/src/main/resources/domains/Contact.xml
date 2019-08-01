@@ -9,7 +9,7 @@
 	<entity name="Contact">
 	
 		<string name="name" required="true" title="Name" />
-		<string name="type" selection="contact.type.selection" title="Type" />
+		<string name="type" required="true" selection="contact.type.selection" title="Type" />
 		<string name="primaryEmail" title="Primary Email" />
 		<string name="secondaryEmail" title="Secondary Email" />
 		<string name="primaryPhone" title="Primary Phone" />
