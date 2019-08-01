@@ -105,8 +105,16 @@
 		<param name="imagePath" expr="eval: imagePath"/>
 	</action-report>
 	
+	<action-validate name="action-invoice-validate-kanban-status">
+		<error message="You can't move from Paid" if="__self__.status == 'paid'"/>
+		<error message="You can't paid without validate" if="__self__.status == 'draft' &amp;&amp; status == 'paid'"/>
+		<error message="You can't paid without draft" if="__self__.status == 'cancelled' &amp;&amp; status == 'paid'"/>
+		<error message="You can't validate without draft" if="__self__.status == 'cancelled' &amp;&amp; status == 'validated'"/>
+		<error message="You can't draft without cancel" if="__self__.status == 'validated' &amp;&amp; status == 'draft'"/>
+	</action-validate>
+	
 	<kanban name="invoice-kanban" sequenceBy="priority"
-		model="com.axelor.gst.db.Invoice" columnBy="status" title="Invoice" >
+		model="com.axelor.gst.db.Invoice" columnBy="status" title="Invoice" onMove="action-invoice-validate-kanban-status">
 		<field name="company" />
 		<field name="party" />
 		<field name="date" />
