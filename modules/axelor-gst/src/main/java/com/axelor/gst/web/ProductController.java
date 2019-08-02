@@ -7,10 +7,13 @@ import org.apache.poi.hslf.record.Sound;
 
 import com.axelor.app.AppSettings;
 import com.axelor.gst.db.Address;
+import com.axelor.gst.db.Company;
 import com.axelor.gst.db.Invoice;
 import com.axelor.gst.db.InvoiceLine;
 import com.axelor.gst.db.Party;
 import com.axelor.gst.db.Wizard;
+import com.axelor.gst.db.repo.CompanyRepository;
+import com.axelor.inject.Beans;
 import com.axelor.meta.schema.actions.ActionView;
 import com.axelor.meta.schema.actions.ActionView.ActionViewBuilder;
 import com.axelor.rpc.ActionRequest;
@@ -53,15 +56,16 @@ public class ProductController {
           if (defaultInvoiceAddress != null) {
 
             if (defaultInvoiceAddress.getState() != null) {
-              Long partyId = party.getId();
-              request.getContext().put("partyId", partyId);
-              response.setView(
-                  ActionView.define("Invoice")
-                      .model(Invoice.class.getName())
-                      .add("form", "invoice-form")
-                      .context("product_ids", request.getContext().get("productIds"))
-                      .context("party_id", request.getContext().get("partyId"))
-                      .map());
+                    Long partyId = party.getId();
+                    request.getContext().put("partyId", partyId);
+                    response.setView(
+                        ActionView.define("Invoice")
+                            .model(Invoice.class.getName())
+                            .add("form", "invoice-form")
+                            .context("product_ids", request.getContext().get("productIds"))
+                            .context("party_id", request.getContext().get("partyId"))
+                            .map());
+
             } else {
               response.setError("Please fill Party Invoice or default address state");
             }

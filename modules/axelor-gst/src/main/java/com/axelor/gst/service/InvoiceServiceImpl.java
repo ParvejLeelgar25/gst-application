@@ -5,12 +5,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.axelor.gst.db.Address;
+import com.axelor.gst.db.Company;
 import com.axelor.gst.db.Contact;
 import com.axelor.gst.db.Invoice;
 import com.axelor.gst.db.InvoiceLine;
 import com.axelor.gst.db.Party;
 import com.axelor.gst.db.Product;
 import com.axelor.gst.db.Wizard;
+import com.axelor.gst.db.repo.CompanyRepository;
 import com.axelor.gst.db.repo.InvoiceLineRepository;
 import com.axelor.gst.db.repo.InvoiceRepository;
 import com.axelor.gst.db.repo.PartyRepository;
@@ -115,7 +117,7 @@ public class InvoiceServiceImpl implements InvoiceService {
     Party party = Beans.get(PartyRepository.class).all().filter("self.id = ?1", partyId).fetchOne();
     invoice.setParty(party);
     setPartyData(invoice);
-    if (invoice.getInvoiceAddress().getState() != null) { 
+    
       List<InvoiceLine> invoiceItem = new ArrayList<>();
       for (Integer productId : productIdList) {
         Product product =
@@ -131,7 +133,6 @@ public class InvoiceServiceImpl implements InvoiceService {
       }
       invoice.setInvoiceItems(invoiceItem);
       setDetails(invoice);
-    }
 
     return invoice;
   }

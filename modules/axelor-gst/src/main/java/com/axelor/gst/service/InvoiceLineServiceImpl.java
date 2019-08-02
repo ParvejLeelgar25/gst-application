@@ -15,7 +15,6 @@ public class InvoiceLineServiceImpl implements InvoiceLineService {
     BigDecimal grossAmount = BigDecimal.ZERO;
     BigDecimal igst = BigDecimal.ZERO;
     BigDecimal sgst = BigDecimal.ZERO;
-    BigDecimal cgst = BigDecimal.ZERO;
     BigDecimal netAmountPercent = BigDecimal.ZERO;
 
     netAmount = invoiceLine.getPrice().multiply(BigDecimal.valueOf(invoiceLine.getQty()));
@@ -30,13 +29,12 @@ public class InvoiceLineServiceImpl implements InvoiceLineService {
       grossAmount = netAmount.add(igst);
     } else {
       sgst = (netAmountPercent).divide(BigDecimal.valueOf(2));
-      cgst = sgst;
-      grossAmount = netAmount.add(sgst).add(cgst);
+      grossAmount = netAmount.add(sgst).add(sgst);
     }
     invoiceLine.setNetAmount(netAmount);
     invoiceLine.setIgst(igst);
     invoiceLine.setSgst(sgst);
-    invoiceLine.setCgst(cgst);
+    invoiceLine.setCgst(sgst);
     invoiceLine.setGrossAmount(grossAmount);
   }
 

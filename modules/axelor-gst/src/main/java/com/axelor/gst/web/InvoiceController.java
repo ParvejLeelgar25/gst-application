@@ -67,23 +67,13 @@ public class InvoiceController {
 
   public void setInvoiceData(ActionRequest request, ActionResponse response) {
     Invoice invoice = request.getContext().asType(Invoice.class);
-    System.out.println(request.getContext().asType(Invoice.class));
+   
     if (request.getContext().get("product_ids") != null
         && request.getContext().get("party_id") != null) {
       List<Integer> productIdList = (List<Integer>) request.getContext().get("product_ids");
       int partyId = (int) request.getContext().get("party_id");
       Invoice invoiceObject = service.setInvoiceData(invoice, productIdList, partyId);
-      if (invoiceObject.getInvoiceItems() != null) {
         response.setValues(invoiceObject);
-      } else {
-        if (invoiceObject.getCompany().getAddress().getState() == null) {
-          response.setError("Please fill state of Company");
-        } else {
-          if (invoiceObject.getInvoiceAddress().getState() == null) {
-            response.setError("Please fill state of Party address");
-          }
-        }
-      }
     }
   }
 

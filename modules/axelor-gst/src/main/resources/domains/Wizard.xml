@@ -8,6 +8,6 @@
 
 	<entity name="Wizard">
 		<many-to-one name="party" ref="com.axelor.gst.db.Party" required="true" title="Party"/>
-		
+	
 	</entity>
 </domain-models>

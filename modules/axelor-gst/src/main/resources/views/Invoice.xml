@@ -11,7 +11,7 @@
 	</grid>
 
 	<form name="invoice-form" title="Invoice" model="com.axelor.gst.db.Invoice"
-		onNew="action-invoice-record-company-on-new,action-invoice-attrs-draft-on-new,com.axelor.gst.web.InvoiceController:setInvoiceData">
+		onNew="action-invoice-record-company-on-new,action-invoice-attrs-draft-on-new,action-invoice-method-on-new">
 		<toolbar>
 			<button name="print" icon="fa-print" title="Report" 
 				onClick="save,action-invoice-method-button-print-on-click,action-invoice-report-button-print-on-click" hideIf="status == 'draft'"/>	
@@ -58,7 +58,6 @@
 		model="com.axelor.gst.db.Company">
 		<field name="company" expr="eval: __repo__(Company).all().fetchOne()" />
 		<field name="date" expr="eval: __datetime__" />
-		<field name="" expr=""/>
 	</action-record>
 
 	<action-method name="action-invoice-method-party-on-change">
@@ -75,6 +74,7 @@
 
 	<action-attrs name="action-invoice-attrs-draft-on-new">
 		<attribute name="value" for="status" expr="eval: status='draft'" />
+
 	</action-attrs>
 
 	<action-attrs name="action-invoice-validate-on-click">
@@ -105,6 +105,15 @@
 		<param name="id" expr="eval: id" />
 		<param name="imagePath" expr="eval: imagePath"/>
 	</action-report>
+	
+	<action-method name="action-invoice-method-on-new">
+		<call class="com.axelor.gst.web.InvoiceController" method="setInvoiceData"/>
+	</action-method>
+	
+	<action-group name="action-invoice-group-on-new">
+		<action name="action-invoice-record-company-on-new" if="!invoiceItems"/>
+		<action name="action-invoice-method-on-new" if="invoiceItems"/>
+	</action-group>
 		
 	<action-validate name="action-invoice-validate-kanban-status">
 		<error message="You can't move from Paid" if="__self__.status == 'paid'"/>
