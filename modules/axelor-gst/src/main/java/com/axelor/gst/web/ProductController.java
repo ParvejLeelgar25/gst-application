@@ -3,7 +3,10 @@ package com.axelor.gst.web;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.poi.hslf.record.Sound;
+
 import com.axelor.app.AppSettings;
+import com.axelor.gst.db.Address;
 import com.axelor.gst.db.Invoice;
 import com.axelor.gst.db.InvoiceLine;
 import com.axelor.gst.db.Party;
@@ -20,7 +23,7 @@ public class ProductController {
 
     List<Integer> ids;
     if ((ids = (List) request.getContext().get("_ids")) == null) {
-      throw new IllegalArgumentException("Please Select Atleast One Record");
+      response.setError("Please Select Atleast One Record");
     } else {
       String ids_str = ids.toString();
       String productId = ids_str.substring(1, ids_str.length() - 1);
@@ -33,22 +36,46 @@ public class ProductController {
   public void invoiceView(ActionRequest request, ActionResponse response) {
 
     if (request.getContext().get("productIds") == null) {
-      throw new IllegalArgumentException("Please Select Atleast One Record");
+      response.setError("Please Select Atleast One Record");
     } else {
       if (request.getContext().get("party") != null) {
         Party party = (Party) request.getContext().get("party");
-        Long partyId = party.getId();
-        request.getContext().put("partyId", partyId);
-        response.setView(
-            ActionView.define("Invoice")
-                .model(Invoice.class.getName())
-                .add("form", "invoice-form")
-                .context("product_ids", request.getContext().get("productIds"))
-                .context("party_id", request.getContext().get("partyId"))
-                .map());
-      }
-      else {
-    	  response.setError("Please select Party");
+
+        if (party.getAddressList() != null) {
+          Address defaultInvoiceAddress = null;
+
+          for (Address address : party.getAddressList()) {
+            if (address.getType().equals("default") || address.getType().equals("invoice")) {
+              defaultInvoiceAddress = address;
+            }
+          }
+
+          if (defaultInvoiceAddress != null) {
+
+            if (defaultInvoiceAddress.getState() != null) {
+              Long partyId = party.getId();
+              request.getContext().put("partyId", partyId);
+              response.setView(
+                  ActionView.define("Invoice")
+                      .model(Invoice.class.getName())
+                      .add("form", "invoice-form")
+                      .context("product_ids", request.getContext().get("productIds"))
+                      .context("party_id", request.getContext().get("partyId"))
+                      .map());
+            } else {
+              response.setError("Please fill Party Invoice or default address state");
+            }
+
+          } else {
+            response.setError("Please fill Invoice address or default address of party");
+          }
+
+        } else {
+          response.setError("Please Fill Address of Party");
+        }
+
+      } else {
+        response.setError("Please select Party");
       }
     }
     response.setCanClose(true);

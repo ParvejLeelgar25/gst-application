@@ -16,5 +16,5 @@ public interface InvoiceService {
   
   public Invoice setInvoiceData(Invoice invoice, List<Integer> productIdList, int partyId);
   
-  public void reCalculation(Invoice invoice);
+  /*public void reCalculation(Invoice invoice);*/
 }

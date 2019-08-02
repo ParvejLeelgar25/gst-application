@@ -19,14 +19,14 @@
 		
 		<panel name="invoice-panel" itemSpan="6">
 			<field name="status" selection="invoice.status.selection" widget="NavSelect" />
-			<field name="company" canNew="true" widget="SuggestBox" onChange="com.axelor.gst.web.InvoiceController:reCalculation"/>
+			<field name="company" canNew="true" widget="SuggestBox" readonlyIf="invoiceItems.length > 0" />
 			<field name="reference"/>
 			<field name="date" />
 			<field name="priority" />
-			<field name="party" canNew="true" form-view="party-form" widget="SuggestBox" 
-				onChange="action-invoice-method-party-on-change,com.axelor.gst.web.InvoiceController:reCalculation" />
+			<field name="party" canNew="true" form-view="party-form" widget="SuggestBox" readonlyIf="invoiceItems.length > 0" 
+				onChange="action-invoice-method-party-on-change" />
 			<field name="partyContact" widget="SuggestBox" />
-			<field name="invoiceAddress" widget="SuggestBox" onChange="com.axelor.gst.web.InvoiceController:reCalculation"/>
+			<field name="invoiceAddress" widget="SuggestBox" readonlyIf="invoiceItems.length > 0"/>
 			<field name="shippingAddress" widget="SuggestBox" hideIf="isUseInvoiceAddressAsShipping == true" />
 			<field name="isUseInvoiceAddressAsShipping"
 				onChange="action-invoice-method-isUseInvoiceAddressAsShipping-on-change" />
@@ -58,6 +58,7 @@
 		model="com.axelor.gst.db.Company">
 		<field name="company" expr="eval: __repo__(Company).all().fetchOne()" />
 		<field name="date" expr="eval: __datetime__" />
+		<field name="" expr=""/>
 	</action-record>
 
 	<action-method name="action-invoice-method-party-on-change">
@@ -104,7 +105,7 @@
 		<param name="id" expr="eval: id" />
 		<param name="imagePath" expr="eval: imagePath"/>
 	</action-report>
-	
+		
 	<action-validate name="action-invoice-validate-kanban-status">
 		<error message="You can't move from Paid" if="__self__.status == 'paid'"/>
 		<error message="You can't paid without validate" if="__self__.status == 'draft' &amp;&amp; status == 'paid'"/>

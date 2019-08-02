@@ -87,7 +87,7 @@ public class InvoiceController {
     }
   }
 
-  public void reCalculation(ActionRequest request, ActionResponse response) {
+/*  public void reCalculation(ActionRequest request, ActionResponse response) {
 
     Invoice invoice = request.getContext().asType(Invoice.class);
     if (invoice.getCompany() != null
@@ -103,6 +103,7 @@ public class InvoiceController {
             response.setValue("netSgst", invoice.getNetSgst());
             response.setValue("netCgst", invoice.getNetCgst());
             response.setValue("grossAmount", invoice.getGrossAmount());
+            
           } else {
             response.setError("Please fill state of Invoice Address");
           }
@@ -118,7 +119,7 @@ public class InvoiceController {
     } else {
       response.setError("Please fill Required field");
     }
-  }
+  }*/
 
   public void getImagePath(ActionRequest request, ActionResponse response) {
     String imagePath = AppSettings.get().getPath("file.upload.dir", "file.upload.dir");

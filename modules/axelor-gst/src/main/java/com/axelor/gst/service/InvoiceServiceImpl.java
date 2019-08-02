@@ -30,7 +30,7 @@ public class InvoiceServiceImpl implements InvoiceService {
     List<Address> addressList = new ArrayList<Address>();
     Contact primaryContact = null;
     Address defaultInvoiceAddress = null;
-    Address defaultShippingAddress = null;
+//    Address defaultShippingAddress = null;
 
     if (invoice.getParty() != null) {
       Party party = invoice.getParty();
@@ -50,15 +50,15 @@ public class InvoiceServiceImpl implements InvoiceService {
           if (address.getType().equals("default") || address.getType().equals("invoice")) {
             defaultInvoiceAddress = address;
           }
-          if (address.getType().equals("default") || address.getType().equals("shipping")) {
+          /*if (address.getType().equals("default") || address.getType().equals("shipping")) {
             defaultShippingAddress = address;
-          }
+          }*/
         }
       }
     }
     invoice.setPartyContact(primaryContact);
     invoice.setInvoiceAddress(defaultInvoiceAddress);
-    invoice.setShippingAddress(defaultShippingAddress);
+    invoice.setShippingAddress(defaultInvoiceAddress);
   }
 
   @Override
@@ -70,7 +70,7 @@ public class InvoiceServiceImpl implements InvoiceService {
       List<Address> addressList = new ArrayList<Address>();
       addressList = party.getAddressList();
 
-      if (invoice.getIsUseInvoiceAddressAsShipping() == false) {
+      if (!(invoice.getIsUseInvoiceAddressAsShipping())) {
         if (addressList != null) {
           for (Address address : addressList) {
             if (address.getType().equals("default") || address.getType().equals("shipping")) {
@@ -136,7 +136,7 @@ public class InvoiceServiceImpl implements InvoiceService {
     return invoice;
   }
 
-  @Override
+/*  @Override
   public void reCalculation(Invoice invoice) {
     List<InvoiceLine> invoiceLineListNew = new ArrayList<>();
     if (invoice.getInvoiceItems() != null) {
@@ -148,5 +148,5 @@ public class InvoiceServiceImpl implements InvoiceService {
       invoice.setInvoiceItems(invoiceLineListNew);
       setDetails(invoice);
     }
-  }
+  }*/
 }

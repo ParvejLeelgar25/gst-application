@@ -19,6 +19,7 @@
 			<field name="ifsc" />
 			<field name="type" selection="bankAccount.type.selection" />
 			<field name="address" />
+
 		</panel>
 	</form>
 
