@@ -12,7 +12,9 @@ import com.axelor.gst.db.InvoiceLine;
 import com.axelor.gst.db.Party;
 import com.axelor.gst.db.Product;
 import com.axelor.gst.db.Wizard;
+import com.axelor.gst.db.repo.AddressRepository;
 import com.axelor.gst.db.repo.CompanyRepository;
+import com.axelor.gst.db.repo.ContactRepository;
 import com.axelor.gst.db.repo.InvoiceLineRepository;
 import com.axelor.gst.db.repo.InvoiceRepository;
 import com.axelor.gst.db.repo.PartyRepository;
@@ -41,7 +43,7 @@ public class InvoiceServiceImpl implements InvoiceService {
 
       if (contactList != null) {
         for (Contact contact : contactList) {
-          if (contact.getType().equals("primary")) {
+          if (contact.getType().equals(ContactRepository.primaryContact)) {
             primaryContact = contact;
           }
         }
@@ -49,7 +51,7 @@ public class InvoiceServiceImpl implements InvoiceService {
 
       if (addressList != null) {
         for (Address address : addressList) {
-          if (address.getType().equals("default") || address.getType().equals("invoice")) {
+          if (address.getType().equals(AddressRepository.defaultAddress) || address.getType().equals(AddressRepository.invoiceAddress)) {
             defaultInvoiceAddress = address;
           }
           /*if (address.getType().equals("default") || address.getType().equals("shipping")) {
@@ -75,7 +77,7 @@ public class InvoiceServiceImpl implements InvoiceService {
       if (!(invoice.getIsUseInvoiceAddressAsShipping())) {
         if (addressList != null) {
           for (Address address : addressList) {
-            if (address.getType().equals("default") || address.getType().equals("shipping")) {
+            if (address.getType().equals(AddressRepository.defaultAddress) || address.getType().equals(AddressRepository.shippingAddress)) {
               defaultShippingAddress = address;
             }
           }

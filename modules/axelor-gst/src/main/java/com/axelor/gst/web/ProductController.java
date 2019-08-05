@@ -12,6 +12,7 @@ import com.axelor.gst.db.Invoice;
 import com.axelor.gst.db.InvoiceLine;
 import com.axelor.gst.db.Party;
 import com.axelor.gst.db.Wizard;
+import com.axelor.gst.db.repo.AddressRepository;
 import com.axelor.gst.db.repo.CompanyRepository;
 import com.axelor.inject.Beans;
 import com.axelor.meta.schema.actions.ActionView;
@@ -48,7 +49,7 @@ public class ProductController {
           Address defaultInvoiceAddress = null;
 
           for (Address address : party.getAddressList()) {
-            if (address.getType().equals("default") || address.getType().equals("invoice")) {
+            if (address.getType().equals(AddressRepository.defaultAddress) || address.getType().equals("invoice")) {
               defaultInvoiceAddress = address;
             }
           }

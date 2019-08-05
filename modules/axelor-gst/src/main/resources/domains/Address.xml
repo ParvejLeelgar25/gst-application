@@ -16,5 +16,14 @@
 		<many-to-one name="country" ref="com.axelor.gst.db.Country" required="true" title="Country" />
 		<string name="pinCode" title="Pin Code" />
 		
+	<extra-code>
+      <![CDATA[
+         public static String defaultAddress = "default";
+         public static String invoiceAddress = "invoice";
+         public static String shippingAddress = "shipping";
+         public static String otherAddress = "other";
+      ]]>
+    </extra-code>
+		
 	</entity>
 </domain-models>

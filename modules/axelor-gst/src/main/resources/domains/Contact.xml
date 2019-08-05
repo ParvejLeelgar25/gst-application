@@ -15,5 +15,14 @@
 		<string name="primaryPhone" title="Primary Phone" />
 		<string name="secondaryPhone" title="Secondary Phone" />
 
+    <extra-code>
+      <![CDATA[
+         public static String primaryContact = "primary";
+         public static String secondaryContact = "secondary";
+         public static String othersContact = "others";
+      ]]>
+    </extra-code>
+
 	</entity>
+	
 </domain-models>
