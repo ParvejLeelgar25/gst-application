@@ -113,15 +113,15 @@ public class InvoiceServiceImpl implements InvoiceService {
   }
 
   @Override
-  public Invoice setInvoiceData(Invoice invoice, List<Integer> productIdList, int partyId) {
-    Party party = Beans.get(PartyRepository.class).all().filter("self.id = ?1", partyId).fetchOne();
+  public Invoice setInvoiceData(Invoice invoice, List<Integer> productIdList, long partyId) {
+    Party party = Beans.get(PartyRepository.class).find(partyId);
     invoice.setParty(party);
     setPartyData(invoice);
     
       List<InvoiceLine> invoiceItem = new ArrayList<>();
       for (Integer productId : productIdList) {
         Product product =
-            Beans.get(ProductRepository.class).all().filter("self.id = ?1", productId).fetchOne();
+            Beans.get(ProductRepository.class).find((long)productId);
         InvoiceLine invoiceLine = new InvoiceLine();
         invoiceLine.setProduct(product);
         invoiceLine.setItem("[" + product.getCode() + "]" + product.getName());

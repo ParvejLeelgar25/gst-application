@@ -63,10 +63,13 @@
 	<chart name="chart.gst.invoice.per.status.amount" title="Invoice Per Status Amount">
 		<dataset type="sql"> 
   			<![CDATA[
-  				select sum(gi.gross_amount) as amount,gi.status as status from gst_invoice as gi group by gi.status;
+  
+  				select sum(gi.gross_amount) as amount,gi.status as status, msi.title as title from gst_invoice as gi 
+  				INNER JOIN meta_select_item as msi ON gi.status = msi.value  group by gi.status, msi.title;
+  				
   			]]>
   		</dataset>
-		<category key="status" />
+		<category key="title" />
 		<series key="amount" type="bar" />
 	</chart>
 
