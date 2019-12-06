@@ -21,12 +21,12 @@
 			<field name="status" selection="invoice.status.selection" widget="NavSelect" />
 			<field name="company" canNew="true" widget="SuggestBox" readonlyIf="invoiceItems.length > 0" />
 			<field name="reference"/>
-			<field name="date" />
+			<field name="date" onChange="new-action"/>
 			<field name="priority" />
 			<field name="party" canNew="true" form-view="party-form" widget="SuggestBox" readonlyIf="invoiceItems.length > 0" 
 				onChange="action-invoice-method-party-on-change" />
 			<field name="partyContact" widget="SuggestBox" />
-			<field name="invoiceAddress" widget="SuggestBox" readonlyIf="invoiceItems.length > 0"/>
+			<field name="invoiceAddress" widget="SuggestBox" readonlyIf="invoiceItems.length > 0" onSelect="action-invoice-attrs-domain-address"/>
 			<field name="shippingAddress" widget="SuggestBox" hideIf="isUseInvoiceAddressAsShipping == true" />
 			<field name="isUseInvoiceAddressAsShipping"
 				onChange="action-invoice-method-isUseInvoiceAddressAsShipping-on-change" />
@@ -44,7 +44,7 @@
 		
 		<panel sidebar="true" hideIf="status=='paid'">
 			<button name="draft" title="Draft"
-				onClick="action-invoice-attrs-draft-on-new" hidden="true" showIf="status == 'cancelled'"/>
+				onClick="action-invoice-attrs-draft-on-new" hidden="true" showIf="status == 'cancelled'" />
 			<button name="validate" title="Validate"
 				onClick="save,action-invoice-method-button-validate-on-click,action-invoice-validate-on-click,save" hidden="true" showIf="status=='draft'" />
 			<button name="paid" title="Paid" onClick="action-invoice-paid-on-click"
@@ -141,5 +141,13 @@
     		</div>
     ]]></template>
 	</kanban>
+	
+	<action-attrs name="action-invoice-attrs-domain-address">
+		<attribute name="domain" for="invoideAddress" expr="eval: &quot;self.id IN (${party?.addressList?.collect()?.join(',')})&quot;" />
+    </action-attrs>
+    
+    <action-attrs name="new-action">
+    	<attribute name="value" for="date" expr="eval: __datetime__"/>
+    </action-attrs>
 
 </object-views>	

@@ -18,7 +18,7 @@
 		<field name="grossAmount" />
 	</grid>
 
-	<form name="invoice-line-form" title="Invoice" model="com.axelor.gst.db.InvoiceLine">
+	<form name="invoice-line-form" title="Invoice" model="com.axelor.gst.db.InvoiceLine" onNew="onNew1">
 		<panel name="invoice-line-panel" title="Invoice Line">
 			<field name="product" canNew="true" form-view="product-form"
 				widget="SuggestBox" onChange="action-invoice-line-method-product-on-change,action-invoice-line-method-qty-price-product-on-change" />
@@ -42,5 +42,11 @@
 	<action-method name="action-invoice-line-method-product-on-change">
 		<call class="com.axelor.gst.web.InvoiceLineController" method="setProductDetails"/>
 	</action-method>
+	
+	<action-attrs name="onNew1" model="com.axelor.gst.db.InvoiceLine">
+		<attribute name="readonly" for="product" expr=""/>
+	</action-attrs>
+	
+	
 
 </object-views>

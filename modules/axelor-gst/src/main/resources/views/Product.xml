@@ -24,7 +24,7 @@
 		<panel name="product-panel" title="Product">
 			<field name="image" widget="image" />
 			<field name="name" />
-			<field name="code" />
+			<field name="code" x-bind="{{code|unaccent|uppercase}}"/>
 			<field name="hsbn" />
 			<field name="salePrice" />
 			<field name="costPrice" />

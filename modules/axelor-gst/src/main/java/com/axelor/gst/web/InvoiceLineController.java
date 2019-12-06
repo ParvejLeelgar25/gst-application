@@ -55,6 +55,8 @@ public class InvoiceLineController {
       response.setValue("item", invoiceLine.getItem());
       response.setValue("gstRate", invoiceLine.getGstRate());
       response.setValue("price", invoiceLine.getPrice());
+      
+/*      response.setValue("hsbn", invoiceLine.getHsbn());*/
 
     } else {
       response.setError("Please fill Required Field of Invoice");

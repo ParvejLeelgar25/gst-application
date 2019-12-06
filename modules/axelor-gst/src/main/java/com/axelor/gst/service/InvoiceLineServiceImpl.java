@@ -46,6 +46,7 @@ public class InvoiceLineServiceImpl implements InvoiceLineService {
       invoiceLine.setGstRate(product.getGstRate());
       invoiceLine.setItem("[" + product.getCode() + "]" + product.getName());
       invoiceLine.setPrice(product.getSalePrice());
+     /* invoiceLine.setHsbn(product.getHsbn());*/
     } else {
       invoiceLine.setGstRate(null);
       invoiceLine.setItem(null);

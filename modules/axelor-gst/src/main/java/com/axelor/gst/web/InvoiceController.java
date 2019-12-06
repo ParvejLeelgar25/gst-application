@@ -3,8 +3,10 @@ package com.axelor.gst.web;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.axelor.app.AppSettings;
+import com.axelor.gst.db.Address;
 import com.axelor.gst.db.Country;
 import com.axelor.gst.db.Invoice;
 import com.axelor.gst.db.InvoiceLine;
@@ -115,4 +117,16 @@ public class InvoiceController {
     String imagePath = AppSettings.get().getPath("file.upload.dir", "file.upload.dir");
     request.getContext().put("imagePath", imagePath);
   }
+  
+  public String createDomainForPartyAddress(Invoice invoice) {
+	  String domain = null;
+	  List<Address> partyAddressList = invoice.getParty().getAddressList();
+	  if (!partyAddressList.isEmpty()) {
+	  domain = "self.id IN " + partyAddressList.stream().map(i -> i.getId()).collect(Collectors.toList())
+	  .toString().replace('[', '(').replace(']', ')');
+	  } else {
+	  domain = "self.id = null";
+	  }
+	  return domain;
+	  }
 }

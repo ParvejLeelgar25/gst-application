@@ -5,6 +5,9 @@
   http://axelor.com/xml/ns/object-views/object-views_5.0.xsd">
 
 	<grid name="state-grid" title="State" model="com.axelor.gst.db.State">
+	<toolbar>
+		<button name="btn" onClick="com.axelor.gst.web.CityController:dataImport" title="Import"/>
+	</toolbar>
 		<field name="name" />
 		<field name="country" />
 	</grid>
